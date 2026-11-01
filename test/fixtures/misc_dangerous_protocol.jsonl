@@ -1,0 +1,68 @@
+{"file":"misc_dangerous_protocol","input":"<javascript:alert(1)>","ok":"<p><a href=\"\">javascript:alert(1)</a></p>","t":"html","test":"dangerous_protocol_autolink"}
+{"file":"misc_dangerous_protocol","msg":"should be safe by default","t":"assert","test":"dangerous_protocol_autolink"}
+{"file":"misc_dangerous_protocol","input":"<http://a>","ok":"<p><a href=\"http://a\">http://a</a></p>","t":"html","test":"dangerous_protocol_autolink"}
+{"file":"misc_dangerous_protocol","msg":"should allow `http:`","t":"assert","test":"dangerous_protocol_autolink"}
+{"file":"misc_dangerous_protocol","input":"<https://a>","ok":"<p><a href=\"https://a\">https://a</a></p>","t":"html","test":"dangerous_protocol_autolink"}
+{"file":"misc_dangerous_protocol","msg":"should allow `https:`","t":"assert","test":"dangerous_protocol_autolink"}
+{"file":"misc_dangerous_protocol","input":"<irc:///help>","ok":"<p><a href=\"irc:///help\">irc:///help</a></p>","t":"html","test":"dangerous_protocol_autolink"}
+{"file":"misc_dangerous_protocol","msg":"should allow `irc:`","t":"assert","test":"dangerous_protocol_autolink"}
+{"file":"misc_dangerous_protocol","input":"<mailto:a>","ok":"<p><a href=\"mailto:a\">mailto:a</a></p>","t":"html","test":"dangerous_protocol_autolink"}
+{"file":"misc_dangerous_protocol","msg":"should allow `mailto:`","t":"assert","test":"dangerous_protocol_autolink"}
+{"file":"misc_dangerous_protocol","input":"![](javascript:alert(1))","ok":"<p><img src=\"\" alt=\"\" /></p>","t":"html","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","msg":"should be safe by default","t":"assert","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","input":"![](http://a)","ok":"<p><img src=\"http://a\" alt=\"\" /></p>","t":"html","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","msg":"should allow `http:`","t":"assert","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","input":"![](https://a)","ok":"<p><img src=\"https://a\" alt=\"\" /></p>","t":"html","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","msg":"should allow `https:`","t":"assert","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","input":"![](irc:///help)","ok":"<p><img src=\"\" alt=\"\" /></p>","t":"html","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","msg":"should not allow `irc:`","t":"assert","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","input":"![](mailto:a)","ok":"<p><img src=\"\" alt=\"\" /></p>","t":"html","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","msg":"should not allow `mailto:`","t":"assert","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","input":"![](#a)","ok":"<p><img src=\"#a\" alt=\"\" /></p>","t":"html","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","msg":"should allow a hash","t":"assert","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","input":"![](?a)","ok":"<p><img src=\"?a\" alt=\"\" /></p>","t":"html","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","msg":"should allow a search","t":"assert","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","input":"![](/a)","ok":"<p><img src=\"/a\" alt=\"\" /></p>","t":"html","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","msg":"should allow an absolute","t":"assert","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","input":"![](./a)","ok":"<p><img src=\"./a\" alt=\"\" /></p>","t":"html","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","msg":"should allow an relative","t":"assert","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","input":"![](../a)","ok":"<p><img src=\"../a\" alt=\"\" /></p>","t":"html","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","msg":"should allow an upwards relative","t":"assert","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","input":"![](a#b:c)","ok":"<p><img src=\"a#b:c\" alt=\"\" /></p>","t":"html","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","msg":"should allow a colon in a hash","t":"assert","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","input":"![](a?b:c)","ok":"<p><img src=\"a?b:c\" alt=\"\" /></p>","t":"html","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","msg":"should allow a colon in a search","t":"assert","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","input":"![](a/b:c)","ok":"<p><img src=\"a/b:c\" alt=\"\" /></p>","t":"html","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","msg":"should allow a colon in a path","t":"assert","test":"dangerous_protocol_image"}
+{"file":"misc_dangerous_protocol","input":"![](javascript:alert(1))","o":{"esmParse":false,"expressionParse":false,"options":{"compile":{"allowAnyImgSrc":true,"allowDangerousHtml":false,"allowDangerousProtocol":false,"defaultLineEnding":"\n","gfmFootnoteBackLabel":null,"gfmFootnoteClobberPrefix":null,"gfmFootnoteLabel":null,"gfmFootnoteLabelAttributes":null,"gfmFootnoteLabelTagName":null,"gfmTagfilter":false,"gfmTaskListItemCheckable":false},"parse":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}}},"ok":"<p><img src=\"javascript:alert(1)\" alt=\"\" /></p>","t":"htmlOptions","test":"dangerous_protocol_image_with_option"}
+{"file":"misc_dangerous_protocol","msg":"should allow javascript protocol with allow_any_img_src option","t":"assert","test":"dangerous_protocol_image_with_option"}
+{"file":"misc_dangerous_protocol","input":"![](irc:///help)","o":{"esmParse":false,"expressionParse":false,"options":{"compile":{"allowAnyImgSrc":true,"allowDangerousHtml":false,"allowDangerousProtocol":false,"defaultLineEnding":"\n","gfmFootnoteBackLabel":null,"gfmFootnoteClobberPrefix":null,"gfmFootnoteLabel":null,"gfmFootnoteLabelAttributes":null,"gfmFootnoteLabelTagName":null,"gfmTagfilter":false,"gfmTaskListItemCheckable":false},"parse":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}}},"ok":"<p><img src=\"irc:///help\" alt=\"\" /></p>","t":"htmlOptions","test":"dangerous_protocol_image_with_option"}
+{"file":"misc_dangerous_protocol","msg":"should allow irc protocol with allow_any_img_src option","t":"assert","test":"dangerous_protocol_image_with_option"}
+{"file":"misc_dangerous_protocol","input":"![](mailto:a)","o":{"esmParse":false,"expressionParse":false,"options":{"compile":{"allowAnyImgSrc":true,"allowDangerousHtml":false,"allowDangerousProtocol":false,"defaultLineEnding":"\n","gfmFootnoteBackLabel":null,"gfmFootnoteClobberPrefix":null,"gfmFootnoteLabel":null,"gfmFootnoteLabelAttributes":null,"gfmFootnoteLabelTagName":null,"gfmTagfilter":false,"gfmTaskListItemCheckable":false},"parse":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}}},"ok":"<p><img src=\"mailto:a\" alt=\"\" /></p>","t":"htmlOptions","test":"dangerous_protocol_image_with_option"}
+{"file":"misc_dangerous_protocol","msg":"should allow mailto protocol with allow_any_img_src option","t":"assert","test":"dangerous_protocol_image_with_option"}
+{"file":"misc_dangerous_protocol","input":"[](javascript:alert(1))","ok":"<p><a href=\"\"></a></p>","t":"html","test":"dangerous_protocol_link"}
+{"file":"misc_dangerous_protocol","msg":"should be safe by default","t":"assert","test":"dangerous_protocol_link"}
+{"file":"misc_dangerous_protocol","input":"[](http://a)","ok":"<p><a href=\"http://a\"></a></p>","t":"html","test":"dangerous_protocol_link"}
+{"file":"misc_dangerous_protocol","msg":"should allow `http:`","t":"assert","test":"dangerous_protocol_link"}
+{"file":"misc_dangerous_protocol","input":"[](https://a)","ok":"<p><a href=\"https://a\"></a></p>","t":"html","test":"dangerous_protocol_link"}
+{"file":"misc_dangerous_protocol","msg":"should allow `https:`","t":"assert","test":"dangerous_protocol_link"}
+{"file":"misc_dangerous_protocol","input":"[](irc:///help)","ok":"<p><a href=\"irc:///help\"></a></p>","t":"html","test":"dangerous_protocol_link"}
+{"file":"misc_dangerous_protocol","msg":"should allow `irc:`","t":"assert","test":"dangerous_protocol_link"}
+{"file":"misc_dangerous_protocol","input":"[](mailto:a)","ok":"<p><a href=\"mailto:a\"></a></p>","t":"html","test":"dangerous_protocol_link"}
+{"file":"misc_dangerous_protocol","msg":"should allow `mailto:`","t":"assert","test":"dangerous_protocol_link"}
+{"file":"misc_dangerous_protocol","input":"[](#a)","ok":"<p><a href=\"#a\"></a></p>","t":"html","test":"dangerous_protocol_link"}
+{"file":"misc_dangerous_protocol","msg":"should allow a hash","t":"assert","test":"dangerous_protocol_link"}
+{"file":"misc_dangerous_protocol","input":"[](?a)","ok":"<p><a href=\"?a\"></a></p>","t":"html","test":"dangerous_protocol_link"}
+{"file":"misc_dangerous_protocol","msg":"should allow a search","t":"assert","test":"dangerous_protocol_link"}
+{"file":"misc_dangerous_protocol","input":"[](/a)","ok":"<p><a href=\"/a\"></a></p>","t":"html","test":"dangerous_protocol_link"}
+{"file":"misc_dangerous_protocol","msg":"should allow an absolute","t":"assert","test":"dangerous_protocol_link"}
+{"file":"misc_dangerous_protocol","input":"[](./a)","ok":"<p><a href=\"./a\"></a></p>","t":"html","test":"dangerous_protocol_link"}
+{"file":"misc_dangerous_protocol","msg":"should allow an relative","t":"assert","test":"dangerous_protocol_link"}
+{"file":"misc_dangerous_protocol","input":"[](../a)","ok":"<p><a href=\"../a\"></a></p>","t":"html","test":"dangerous_protocol_link"}
+{"file":"misc_dangerous_protocol","msg":"should allow an upwards relative","t":"assert","test":"dangerous_protocol_link"}
+{"file":"misc_dangerous_protocol","input":"[](a#b:c)","ok":"<p><a href=\"a#b:c\"></a></p>","t":"html","test":"dangerous_protocol_link"}
+{"file":"misc_dangerous_protocol","msg":"should allow a colon in a hash","t":"assert","test":"dangerous_protocol_link"}
+{"file":"misc_dangerous_protocol","input":"[](a?b:c)","ok":"<p><a href=\"a?b:c\"></a></p>","t":"html","test":"dangerous_protocol_link"}
+{"file":"misc_dangerous_protocol","msg":"should allow a colon in a search","t":"assert","test":"dangerous_protocol_link"}
+{"file":"misc_dangerous_protocol","input":"[](a/b:c)","ok":"<p><a href=\"a/b:c\"></a></p>","t":"html","test":"dangerous_protocol_link"}
+{"file":"misc_dangerous_protocol","msg":"should allow a colon in a path","t":"assert","test":"dangerous_protocol_link"}

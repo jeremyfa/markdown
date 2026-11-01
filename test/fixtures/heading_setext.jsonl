@@ -1,0 +1,94 @@
+{"file":"heading_setext","input":"Foo *bar*\n=========","ok":"<h1>Foo <em>bar</em></h1>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should support a heading w/ an equals to (rank of 1)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"Foo *bar*\n---------","ok":"<h2>Foo <em>bar</em></h2>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should support a heading w/ a dash (rank of 2)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"Foo *bar\nbaz*\n====","ok":"<h1>Foo <em>bar\nbaz</em></h1>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should support line endings in setext headings","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"  Foo *bar\nbaz*\t\n====","ok":"<h1>Foo <em>bar\nbaz</em></h1>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should not include initial and final whitespace around content","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"Foo\n-------------------------","ok":"<h2>Foo</h2>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should support long underlines","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"Foo\n=","ok":"<h1>Foo</h1>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should support short underlines","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":" Foo\n  ===","ok":"<h1>Foo</h1>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should support indented content w/ 1 space","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"  Foo\n---","ok":"<h2>Foo</h2>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should support indented content w/ 2 spaces","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"   Foo\n---","ok":"<h2>Foo</h2>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should support indented content w/ 3 spaces","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"    Foo\n    ---","ok":"<pre><code>Foo\n---\n</code></pre>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should not support too much indented content (1)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"    Foo\n---","ok":"<pre><code>Foo\n</code></pre>\n<hr />","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should not support too much indented content (2)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"Foo\n   ----      ","ok":"<h2>Foo</h2>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should support initial and final whitespace around the underline","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"Foo\n   =","ok":"<h1>Foo</h1>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should support whitespace before underline","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"Foo\n    =","ok":"<p>Foo\n=</p>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should not support too much whitespace before underline (1)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"Foo\n\t=","ok":"<p>Foo\n=</p>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should not support too much whitespace before underline (2)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"Foo\n= =","ok":"<p>Foo\n= =</p>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should not support whitespace in the underline (1)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"Foo\n--- -","ok":"<p>Foo</p>\n<hr />","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should not support whitespace in the underline (2)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"Foo  \n-----","ok":"<h2>Foo</h2>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should not support a hard break w/ spaces at the end","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"Foo\\\n-----","ok":"<h2>Foo\\</h2>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should not support a hard break w/ backslash at the end","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"`Foo\n----\n`","ok":"<h2>`Foo</h2>\n<p>`</p>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should precede over inline constructs (1)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"<a title=\"a lot\n---\nof dashes\"/>","ok":"<h2>&lt;a title=&quot;a lot</h2>\n<p>of dashes&quot;/&gt;</p>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should precede over inline constructs (2)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"> Foo\n---","ok":"<blockquote>\n<p>Foo</p>\n</blockquote>\n<hr />","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should not allow underline to be lazy (1)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"> foo\nbar\n===","ok":"<blockquote>\n<p>foo\nbar\n===</p>\n</blockquote>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should not allow underline to be lazy (2)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"- Foo\n---","ok":"<ul>\n<li>Foo</li>\n</ul>\n<hr />","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should not allow underline to be lazy (3)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"Foo\nBar\n---","ok":"<h2>Foo\nBar</h2>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should support line endings in setext headings","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"---\nFoo\n---\nBar\n---\nBaz","ok":"<hr />\n<h2>Foo</h2>\n<h2>Bar</h2>\n<p>Baz</p>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should support adjacent setext headings","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"\n====","ok":"<p>====</p>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should not support empty setext headings","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"---\n---","ok":"<hr />\n<hr />","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should prefer other constructs over setext headings (1)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"- foo\n-----","ok":"<ul>\n<li>foo</li>\n</ul>\n<hr />","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should prefer other constructs over setext headings (2)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"    foo\n---","ok":"<pre><code>foo\n</code></pre>\n<hr />","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should prefer other constructs over setext headings (3)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"> foo\n-----","ok":"<blockquote>\n<p>foo</p>\n</blockquote>\n<hr />","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should prefer other constructs over setext headings (4)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"\\> foo\n------","ok":"<h2>&gt; foo</h2>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should support starting w/ character escapes","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"Foo\nbar\n---\nbaz","ok":"<h2>Foo\nbar</h2>\n<p>baz</p>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"paragraph and heading interplay (1)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"Foo\n\nbar\n---\nbaz","ok":"<p>Foo</p>\n<h2>bar</h2>\n<p>baz</p>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"paragraph and heading interplay (2)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"Foo\nbar\n\n---\n\nbaz","ok":"<p>Foo\nbar</p>\n<hr />\n<p>baz</p>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"paragraph and heading interplay (3)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"Foo\nbar\n* * *\nbaz","ok":"<p>Foo\nbar</p>\n<hr />\n<p>baz</p>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"paragraph and heading interplay (4)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"Foo\nbar\n\\---\nbaz","ok":"<p>Foo\nbar\n---\nbaz</p>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"paragraph and heading interplay (5)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"Foo  \nbar\n-----","ok":"<h2>Foo<br />\nbar</h2>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should support a hard break w/ spaces in between","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"Foo\\\nbar\n-----","ok":"<h2>Foo<br />\nbar</h2>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should support a hard break w/ backslash in between","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"a\n-\nb","ok":"<h2>a</h2>\n<p>b</p>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should prefer a setext heading over an interrupting list","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"[a]: b\n=\n=","ok":"<h1>=</h1>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should support a two setext heading underlines after a definition, as a setext heading","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"> ===\na","ok":"<blockquote>\n<p>===\na</p>\n</blockquote>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should not support lazyness (1)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"> a\n===","ok":"<blockquote>\n<p>a\n===</p>\n</blockquote>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should not support lazyness (2)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"a\n- ===","ok":"<p>a</p>\n<ul>\n<li>===</li>\n</ul>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should not support piercing (1)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"a\n* ---","ok":"<p>a</p>\n<ul>\n<li>\n<hr />\n</li>\n</ul>","t":"html","test":"heading_setext"}
+{"file":"heading_setext","msg":"should not support piercing (2)","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"a\n-","o":{"esmParse":false,"expressionParse":false,"options":{"compile":{"allowAnyImgSrc":false,"allowDangerousHtml":false,"allowDangerousProtocol":false,"defaultLineEnding":"\n","gfmFootnoteBackLabel":null,"gfmFootnoteClobberPrefix":null,"gfmFootnoteLabel":null,"gfmFootnoteLabelAttributes":null,"gfmFootnoteLabelTagName":null,"gfmTagfilter":false,"gfmTaskListItemCheckable":false},"parse":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":false,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}}},"ok":"<p>a\n-</p>","t":"htmlOptions","test":"heading_setext"}
+{"file":"heading_setext","msg":"should support turning off setext underlines","t":"assert","test":"heading_setext"}
+{"file":"heading_setext","input":"alpha\nbravo\n==","o":{"esmParse":false,"expressionParse":false,"options":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}},"ok":"{\"type\":\"root\",\"children\":[{\"type\":\"heading\",\"children\":[{\"type\":\"text\",\"value\":\"alpha\\nbravo\",\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":2,\"column\":6,\"offset\":11}}}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":3,\"column\":3,\"offset\":14}},\"depth\":1}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":3,\"column\":3,\"offset\":14}}}","t":"mdast","test":"heading_setext"}
+{"file":"heading_setext","msg":"should support heading (atx) as `Heading`s in mdast","t":"assert","test":"heading_setext"}

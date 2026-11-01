@@ -1,0 +1,88 @@
+{"file":"misc_tabs","input":"    x","ok":"<pre><code>x\n</code></pre>","t":"html","test":"tabs_flow"}
+{"file":"misc_tabs","msg":"should support a 4*SP to start code","t":"assert","test":"tabs_flow"}
+{"file":"misc_tabs","input":"\tx","ok":"<pre><code>x\n</code></pre>","t":"html","test":"tabs_flow"}
+{"file":"misc_tabs","msg":"should support a HT to start code","t":"assert","test":"tabs_flow"}
+{"file":"misc_tabs","input":" \tx","ok":"<pre><code>x\n</code></pre>","t":"html","test":"tabs_flow"}
+{"file":"misc_tabs","msg":"should support a SP + HT to start code","t":"assert","test":"tabs_flow"}
+{"file":"misc_tabs","input":"  \tx","ok":"<pre><code>x\n</code></pre>","t":"html","test":"tabs_flow"}
+{"file":"misc_tabs","msg":"should support a 2*SP + HT to start code","t":"assert","test":"tabs_flow"}
+{"file":"misc_tabs","input":"   \tx","ok":"<pre><code>x\n</code></pre>","t":"html","test":"tabs_flow"}
+{"file":"misc_tabs","msg":"should support a 3*SP + HT to start code","t":"assert","test":"tabs_flow"}
+{"file":"misc_tabs","input":"    \tx","ok":"<pre><code>\tx\n</code></pre>","t":"html","test":"tabs_flow"}
+{"file":"misc_tabs","msg":"should support a 4*SP to start code, and leave the next HT as code data","t":"assert","test":"tabs_flow"}
+{"file":"misc_tabs","input":"   \t# x","ok":"<pre><code># x\n</code></pre>","t":"html","test":"tabs_flow"}
+{"file":"misc_tabs","msg":"should not support a 3*SP + HT to start an ATX heading","t":"assert","test":"tabs_flow"}
+{"file":"misc_tabs","input":"   \t> x","ok":"<pre><code>&gt; x\n</code></pre>","t":"html","test":"tabs_flow"}
+{"file":"misc_tabs","msg":"should not support a 3*SP + HT to start a block quote","t":"assert","test":"tabs_flow"}
+{"file":"misc_tabs","input":"   \t- x","ok":"<pre><code>- x\n</code></pre>","t":"html","test":"tabs_flow"}
+{"file":"misc_tabs","msg":"should not support a 3*SP + HT to start a list item","t":"assert","test":"tabs_flow"}
+{"file":"misc_tabs","input":"   \t---","ok":"<pre><code>---\n</code></pre>","t":"html","test":"tabs_flow"}
+{"file":"misc_tabs","msg":"should not support a 3*SP + HT to start a thematic break","t":"assert","test":"tabs_flow"}
+{"file":"misc_tabs","input":"   \t```","ok":"<pre><code>```\n</code></pre>","t":"html","test":"tabs_flow"}
+{"file":"misc_tabs","msg":"should not support a 3*SP + HT to start a fenced code","t":"assert","test":"tabs_flow"}
+{"file":"misc_tabs","input":"   \t<div>","ok":"<pre><code>&lt;div&gt;\n</code></pre>","t":"html","test":"tabs_flow"}
+{"file":"misc_tabs","msg":"should not support a 3*SP + HT to start HTML","t":"assert","test":"tabs_flow"}
+{"file":"misc_tabs","input":"#\tx\t#\t","ok":"<h1>x</h1>","t":"html","test":"tabs_flow"}
+{"file":"misc_tabs","msg":"should support tabs around ATX heading sequences","t":"assert","test":"tabs_flow"}
+{"file":"misc_tabs","input":"#\t\tx\t\t#\t\t","ok":"<h1>x</h1>","t":"html","test":"tabs_flow"}
+{"file":"misc_tabs","msg":"should support arbitrary tabs around ATX heading sequences","t":"assert","test":"tabs_flow"}
+{"file":"misc_tabs","input":"```\tx\ty\t\n```\t","ok":"<pre><code class=\"language-x\"></code></pre>","t":"html","test":"tabs_flow"}
+{"file":"misc_tabs","msg":"should support tabs around fenced code fences, info, and meta","t":"assert","test":"tabs_flow"}
+{"file":"misc_tabs","input":"```\t\tx\t\ty\t\t\n```\t\t","ok":"<pre><code class=\"language-x\"></code></pre>","t":"html","test":"tabs_flow"}
+{"file":"misc_tabs","msg":"should support arbitrary tabs around fenced code fences, info, and meta","t":"assert","test":"tabs_flow"}
+{"file":"misc_tabs","input":"```x\n\t```","ok":"<pre><code class=\"language-x\">\t```\n</code></pre>\n","t":"html","test":"tabs_flow"}
+{"file":"misc_tabs","msg":"should not support tabs before fenced code closing fences","t":"assert","test":"tabs_flow"}
+{"file":"misc_tabs","input":"<x\ty\tz\t=\t\"\tx\t\">","o":{"esmParse":false,"expressionParse":false,"options":{"compile":{"allowAnyImgSrc":false,"allowDangerousHtml":true,"allowDangerousProtocol":true,"defaultLineEnding":"\n","gfmFootnoteBackLabel":null,"gfmFootnoteClobberPrefix":null,"gfmFootnoteLabel":null,"gfmFootnoteLabelAttributes":null,"gfmFootnoteLabelTagName":null,"gfmTagfilter":false,"gfmTaskListItemCheckable":false},"parse":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}}},"ok":"<x\ty\tz\t=\t\"\tx\t\">","t":"htmlOptions","test":"tabs_flow"}
+{"file":"misc_tabs","msg":"should support tabs in HTML (if whitespace is allowed)","t":"assert","test":"tabs_flow"}
+{"file":"misc_tabs","input":"*\t*\t*\t","ok":"<hr />","t":"html","test":"tabs_flow"}
+{"file":"misc_tabs","msg":"should support tabs in thematic breaks","t":"assert","test":"tabs_flow"}
+{"file":"misc_tabs","input":"*\t\t*\t\t*\t\t","ok":"<hr />","t":"html","test":"tabs_flow"}
+{"file":"misc_tabs","msg":"should support arbitrary tabs in thematic breaks","t":"assert","test":"tabs_flow"}
+{"file":"misc_tabs","input":"<http:\t>","ok":"<p>&lt;http:\t&gt;</p>","t":"html","test":"tabs_text"}
+{"file":"misc_tabs","msg":"should not support a tab to start an autolink w/ protocol\u2019s rest","t":"assert","test":"tabs_text"}
+{"file":"misc_tabs","input":"<http:x\t>","ok":"<p>&lt;http:x\t&gt;</p>","t":"html","test":"tabs_text"}
+{"file":"misc_tabs","msg":"should not support a tab in an autolink w/ protocol\u2019s rest","t":"assert","test":"tabs_text"}
+{"file":"misc_tabs","input":"<example\t@x.com>","ok":"<p>&lt;example\t@x.com&gt;</p>","t":"html","test":"tabs_text"}
+{"file":"misc_tabs","msg":"should not support a tab in an email autolink\u2019s local part","t":"assert","test":"tabs_text"}
+{"file":"misc_tabs","input":"<example@x\ty.com>","ok":"<p>&lt;example@x\ty.com&gt;</p>","t":"html","test":"tabs_text"}
+{"file":"misc_tabs","msg":"should not support a tab in an email autolink\u2019s label","t":"assert","test":"tabs_text"}
+{"file":"misc_tabs","input":"\\\tx","ok":"<p>\\\tx</p>","t":"html","test":"tabs_text"}
+{"file":"misc_tabs","msg":"should not support character escaped tab","t":"assert","test":"tabs_text"}
+{"file":"misc_tabs","input":"&#9;","ok":"<p>\t</p>","t":"html","test":"tabs_text"}
+{"file":"misc_tabs","msg":"should support character reference resolving to a tab","t":"assert","test":"tabs_text"}
+{"file":"misc_tabs","input":"`\tx`","ok":"<p><code>\tx</code></p>","t":"html","test":"tabs_text"}
+{"file":"misc_tabs","msg":"should support a tab starting code","t":"assert","test":"tabs_text"}
+{"file":"misc_tabs","input":"`x\t`","ok":"<p><code>x\t</code></p>","t":"html","test":"tabs_text"}
+{"file":"misc_tabs","msg":"should support a tab ending code","t":"assert","test":"tabs_text"}
+{"file":"misc_tabs","input":"`\tx\t`","ok":"<p><code>\tx\t</code></p>","t":"html","test":"tabs_text"}
+{"file":"misc_tabs","msg":"should support tabs around code","t":"assert","test":"tabs_text"}
+{"file":"misc_tabs","input":"`\tx `","ok":"<p><code>\tx </code></p>","t":"html","test":"tabs_text"}
+{"file":"misc_tabs","msg":"should support a tab starting, and a space ending, code","t":"assert","test":"tabs_text"}
+{"file":"misc_tabs","input":"` x\t`","ok":"<p><code> x\t</code></p>","t":"html","test":"tabs_text"}
+{"file":"misc_tabs","msg":"should support a space starting, and a tab ending, code","t":"assert","test":"tabs_text"}
+{"file":"misc_tabs","input":"x\t\ny","ok":"<p>x\ny</p>","t":"html","test":"tabs_text"}
+{"file":"misc_tabs","msg":"should support a trailing tab at a line ending in a paragraph","t":"assert","test":"tabs_text"}
+{"file":"misc_tabs","input":"x\n\ty","ok":"<p>x\ny</p>","t":"html","test":"tabs_text"}
+{"file":"misc_tabs","msg":"should support an initial tab after a line ending in a paragraph","t":"assert","test":"tabs_text"}
+{"file":"misc_tabs","input":"x[\ty](z)","ok":"<p>x<a href=\"z\">\ty</a></p>","t":"html","test":"tabs_text"}
+{"file":"misc_tabs","msg":"should support an initial tab in a link label","t":"assert","test":"tabs_text"}
+{"file":"misc_tabs","input":"x[y\t](z)","ok":"<p>x<a href=\"z\">y\t</a></p>","t":"html","test":"tabs_text"}
+{"file":"misc_tabs","msg":"should support a final tab in a link label","t":"assert","test":"tabs_text"}
+{"file":"misc_tabs","input":"[x\ty](z)","ok":"<p><a href=\"z\">x\ty</a></p>","t":"html","test":"tabs_text"}
+{"file":"misc_tabs","msg":"should support a tab in a link label","t":"assert","test":"tabs_text"}
+{"file":"misc_tabs","input":"[x](\ty)","ok":"<p><a href=\"y\">x</a></p>","t":"html","test":"tabs_text"}
+{"file":"misc_tabs","msg":"should support a tab starting a link resource","t":"assert","test":"tabs_text"}
+{"file":"misc_tabs","input":"[x](y\t)","ok":"<p><a href=\"y\">x</a></p>","t":"html","test":"tabs_text"}
+{"file":"misc_tabs","msg":"should support a tab ending a link resource","t":"assert","test":"tabs_text"}
+{"file":"misc_tabs","input":"[x](y\t\"z\")","ok":"<p><a href=\"y\" title=\"z\">x</a></p>","t":"html","test":"tabs_text"}
+{"file":"misc_tabs","msg":"should support a tab between a link destination and title","t":"assert","test":"tabs_text"}
+{"file":"misc_tabs","input":"```\n\tx","ok":"<pre><code>\tx\n</code></pre>\n","t":"html","test":"tabs_virtual_spaces"}
+{"file":"misc_tabs","msg":"should support a tab in fenced code","t":"assert","test":"tabs_virtual_spaces"}
+{"file":"misc_tabs","input":" ```\n\tx","ok":"<pre><code>   x\n</code></pre>\n","t":"html","test":"tabs_virtual_spaces"}
+{"file":"misc_tabs","msg":"should strip 1 space from an initial tab in fenced code if the opening fence is indented as such","t":"assert","test":"tabs_virtual_spaces"}
+{"file":"misc_tabs","input":"  ```\n\tx","ok":"<pre><code>  x\n</code></pre>\n","t":"html","test":"tabs_virtual_spaces"}
+{"file":"misc_tabs","msg":"should strip 2 spaces from an initial tab in fenced code if the opening fence is indented as such","t":"assert","test":"tabs_virtual_spaces"}
+{"file":"misc_tabs","input":"   ```\n\tx","ok":"<pre><code> x\n</code></pre>\n","t":"html","test":"tabs_virtual_spaces"}
+{"file":"misc_tabs","msg":"should strip 3 spaces from an initial tab in fenced code if the opening fence is indented as such","t":"assert","test":"tabs_virtual_spaces"}
+{"file":"misc_tabs","input":"-\ta\n\n\tb","ok":"<ul>\n<li>\n<p>a</p>\n<p>\tb</p>\n</li>\n</ul>","t":"html","test":"tabs_virtual_spaces"}
+{"file":"misc_tabs","msg":"should support a part of a tab as a container, and the rest of a tab as flow","t":"assert","test":"tabs_virtual_spaces"}

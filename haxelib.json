@@ -1,0 +1,12 @@
+{
+    "name": "markdown",
+    "url": "https://github.com/wooorm/markdown-rs",
+    "license": "MIT",
+    "tags": ["markdown", "commonmark", "gfm", "mdx", "parser", "mdast", "cross"],
+    "description": "Pure Haxe port of markdown-rs 1.0.0, a CommonMark compliant markdown parser with GFM, math, frontmatter and MDX, mdast and HTML output.",
+    "version": "0.1.0",
+    "classPath": "src",
+    "releasenote": "Initial port of markdown-rs 1.0.0.",
+    "contributors": ["jeremyfa"],
+    "dependencies": {}
+}

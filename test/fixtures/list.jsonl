@@ -1,0 +1,190 @@
+{"file":"list","input":"A paragraph\nwith two lines.\n\n    indented code\n\n> A block quote.","ok":"<p>A paragraph\nwith two lines.</p>\n<pre><code>indented code\n</code></pre>\n<blockquote>\n<p>A block quote.</p>\n</blockquote>","t":"html","test":"list"}
+{"file":"list","msg":"should support documents","t":"assert","test":"list"}
+{"file":"list","input":"1.  a\n    b.\n\n        c\n\n    > d.","ok":"<ol>\n<li>\n<p>a\nb.</p>\n<pre><code>c\n</code></pre>\n<blockquote>\n<p>d.</p>\n</blockquote>\n</li>\n</ol>","t":"html","test":"list"}
+{"file":"list","msg":"should support documents in list items","t":"assert","test":"list"}
+{"file":"list","input":"- one\n\n two","ok":"<ul>\n<li>one</li>\n</ul>\n<p>two</p>","t":"html","test":"list"}
+{"file":"list","msg":"should not support 1 space for a two-character list prefix","t":"assert","test":"list"}
+{"file":"list","input":"- a\n\n  b","ok":"<ul>\n<li>\n<p>a</p>\n<p>b</p>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support blank lines in list items","t":"assert","test":"list"}
+{"file":"list","input":" -    one\n\n     two","ok":"<ul>\n<li>one</li>\n</ul>\n<pre><code> two\n</code></pre>","t":"html","test":"list"}
+{"file":"list","msg":"should support indented code after lists","t":"assert","test":"list"}
+{"file":"list","input":"   > > 1.  one\n>>\n>>     two","ok":"<blockquote>\n<blockquote>\n<ol>\n<li>\n<p>one</p>\n<p>two</p>\n</li>\n</ol>\n</blockquote>\n</blockquote>","t":"html","test":"list"}
+{"file":"list","msg":"should support proper indent mixed w/ block quotes (1)","t":"assert","test":"list"}
+{"file":"list","input":">>- one\n>>\n  >  > two","ok":"<blockquote>\n<blockquote>\n<ul>\n<li>one</li>\n</ul>\n<p>two</p>\n</blockquote>\n</blockquote>","t":"html","test":"list"}
+{"file":"list","msg":"should support proper indent mixed w/ block quotes (2)","t":"assert","test":"list"}
+{"file":"list","input":"-one\n\n2.two","ok":"<p>-one</p>\n<p>2.two</p>","t":"html","test":"list"}
+{"file":"list","msg":"should not support a missing space after marker","t":"assert","test":"list"}
+{"file":"list","input":"- foo\n\n\n  bar","ok":"<ul>\n<li>\n<p>foo</p>\n<p>bar</p>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support multiple blank lines between items","t":"assert","test":"list"}
+{"file":"list","input":"1.  foo\n\n    ```\n    bar\n    ```\n\n    baz\n\n    > bam","ok":"<ol>\n<li>\n<p>foo</p>\n<pre><code>bar\n</code></pre>\n<p>baz</p>\n<blockquote>\n<p>bam</p>\n</blockquote>\n</li>\n</ol>","t":"html","test":"list"}
+{"file":"list","msg":"should support flow in items","t":"assert","test":"list"}
+{"file":"list","input":"- Foo\n\n      bar\n\n\n      baz","ok":"<ul>\n<li>\n<p>Foo</p>\n<pre><code>bar\n\n\nbaz\n</code></pre>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support blank lines in indented code in items","t":"assert","test":"list"}
+{"file":"list","input":"123456789. ok","ok":"<ol start=\"123456789\">\n<li>ok</li>\n</ol>","t":"html","test":"list"}
+{"file":"list","msg":"should support start on the first list item","t":"assert","test":"list"}
+{"file":"list","input":"1234567890. not ok","ok":"<p>1234567890. not ok</p>","t":"html","test":"list"}
+{"file":"list","msg":"should not support ordered item values over 10 digits","t":"assert","test":"list"}
+{"file":"list","input":"0. ok","ok":"<ol start=\"0\">\n<li>ok</li>\n</ol>","t":"html","test":"list"}
+{"file":"list","msg":"should support ordered item values of `0`","t":"assert","test":"list"}
+{"file":"list","input":"003. ok","ok":"<ol start=\"3\">\n<li>ok</li>\n</ol>","t":"html","test":"list"}
+{"file":"list","msg":"should support ordered item values starting w/ `0`s","t":"assert","test":"list"}
+{"file":"list","input":"-1. not ok","ok":"<p>-1. not ok</p>","t":"html","test":"list"}
+{"file":"list","msg":"should not support \u201cnegative\u201d ordered item values","t":"assert","test":"list"}
+{"file":"list","input":"- foo\n\n      bar","ok":"<ul>\n<li>\n<p>foo</p>\n<pre><code>bar\n</code></pre>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support indented code in list items (1)","t":"assert","test":"list"}
+{"file":"list","input":"  10.  foo\n\n           bar","ok":"<ol start=\"10\">\n<li>\n<p>foo</p>\n<pre><code>bar\n</code></pre>\n</li>\n</ol>","t":"html","test":"list"}
+{"file":"list","msg":"should support indented code in list items (2)","t":"assert","test":"list"}
+{"file":"list","input":"    indented code\n\nparagraph\n\n    more code","ok":"<pre><code>indented code\n</code></pre>\n<p>paragraph</p>\n<pre><code>more code\n</code></pre>","t":"html","test":"list"}
+{"file":"list","msg":"should support indented code in list items (3)","t":"assert","test":"list"}
+{"file":"list","input":"1.     indented code\n\n   paragraph\n\n       more code","ok":"<ol>\n<li>\n<pre><code>indented code\n</code></pre>\n<p>paragraph</p>\n<pre><code>more code\n</code></pre>\n</li>\n</ol>","t":"html","test":"list"}
+{"file":"list","msg":"should support indented code in list items (4)","t":"assert","test":"list"}
+{"file":"list","input":"1.      indented code\n\n   paragraph\n\n       more code","ok":"<ol>\n<li>\n<pre><code> indented code\n</code></pre>\n<p>paragraph</p>\n<pre><code>more code\n</code></pre>\n</li>\n</ol>","t":"html","test":"list"}
+{"file":"list","msg":"should support indented code in list items (5)","t":"assert","test":"list"}
+{"file":"list","input":"   foo\n\nbar","ok":"<p>foo</p>\n<p>bar</p>","t":"html","test":"list"}
+{"file":"list","msg":"should support indented code in list items (6)","t":"assert","test":"list"}
+{"file":"list","input":"-    foo\n\n  bar","ok":"<ul>\n<li>foo</li>\n</ul>\n<p>bar</p>","t":"html","test":"list"}
+{"file":"list","msg":"should support indented code in list items (7)","t":"assert","test":"list"}
+{"file":"list","input":"-  foo\n\n   bar","ok":"<ul>\n<li>\n<p>foo</p>\n<p>bar</p>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support indented code in list items (8)","t":"assert","test":"list"}
+{"file":"list","input":"-\n  foo\n-\n  ```\n  bar\n  ```\n-\n      baz","ok":"<ul>\n<li>foo</li>\n<li>\n<pre><code>bar\n</code></pre>\n</li>\n<li>\n<pre><code>baz\n</code></pre>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support blank first lines (1)","t":"assert","test":"list"}
+{"file":"list","input":"-   \n  foo","ok":"<ul>\n<li>foo</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support blank first lines (2)","t":"assert","test":"list"}
+{"file":"list","input":"-\n\n  foo","ok":"<ul>\n<li></li>\n</ul>\n<p>foo</p>","t":"html","test":"list"}
+{"file":"list","msg":"should support empty only items","t":"assert","test":"list"}
+{"file":"list","input":"- foo\n-\n- bar","ok":"<ul>\n<li>foo</li>\n<li></li>\n<li>bar</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support empty continued items","t":"assert","test":"list"}
+{"file":"list","input":"- foo\n-   \n- bar","ok":"<ul>\n<li>foo</li>\n<li></li>\n<li>bar</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support blank continued items","t":"assert","test":"list"}
+{"file":"list","input":"1. foo\n2.\n3. bar","ok":"<ol>\n<li>foo</li>\n<li></li>\n<li>bar</li>\n</ol>","t":"html","test":"list"}
+{"file":"list","msg":"should support empty continued items (ordered)","t":"assert","test":"list"}
+{"file":"list","input":"*","ok":"<ul>\n<li></li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support a single empty item","t":"assert","test":"list"}
+{"file":"list","input":"foo\n*\n\nfoo\n1.","ok":"<p>foo\n*</p>\n<p>foo\n1.</p>","t":"html","test":"list"}
+{"file":"list","msg":"should not support empty items to interrupt paragraphs","t":"assert","test":"list"}
+{"file":"list","input":" 1.  A paragraph\n     with two lines.\n\n         indented code\n\n     > A block quote.","ok":"<ol>\n<li>\n<p>A paragraph\nwith two lines.</p>\n<pre><code>indented code\n</code></pre>\n<blockquote>\n<p>A block quote.</p>\n</blockquote>\n</li>\n</ol>","t":"html","test":"list"}
+{"file":"list","msg":"should support indenting w/ 1 space","t":"assert","test":"list"}
+{"file":"list","input":"  1.  A paragraph\n      with two lines.\n\n          indented code\n\n      > A block quote.","ok":"<ol>\n<li>\n<p>A paragraph\nwith two lines.</p>\n<pre><code>indented code\n</code></pre>\n<blockquote>\n<p>A block quote.</p>\n</blockquote>\n</li>\n</ol>","t":"html","test":"list"}
+{"file":"list","msg":"should support indenting w/ 2 spaces","t":"assert","test":"list"}
+{"file":"list","input":"   1.  A paragraph\n       with two lines.\n\n           indented code\n\n       > A block quote.","ok":"<ol>\n<li>\n<p>A paragraph\nwith two lines.</p>\n<pre><code>indented code\n</code></pre>\n<blockquote>\n<p>A block quote.</p>\n</blockquote>\n</li>\n</ol>","t":"html","test":"list"}
+{"file":"list","msg":"should support indenting w/ 3 spaces","t":"assert","test":"list"}
+{"file":"list","input":"    1.  A paragraph\n        with two lines.\n\n            indented code\n\n        > A block quote.","ok":"<pre><code>1.  A paragraph\n    with two lines.\n\n        indented code\n\n    &gt; A block quote.\n</code></pre>","t":"html","test":"list"}
+{"file":"list","msg":"should not support indenting w/ 4 spaces","t":"assert","test":"list"}
+{"file":"list","input":"  1.  A paragraph\nwith two lines.\n\n          indented code\n\n      > A block quote.","ok":"<ol>\n<li>\n<p>A paragraph\nwith two lines.</p>\n<pre><code>indented code\n</code></pre>\n<blockquote>\n<p>A block quote.</p>\n</blockquote>\n</li>\n</ol>","t":"html","test":"list"}
+{"file":"list","msg":"should support lazy lines","t":"assert","test":"list"}
+{"file":"list","input":"  1.  A paragraph\n    with two lines.","ok":"<ol>\n<li>A paragraph\nwith two lines.</li>\n</ol>","t":"html","test":"list"}
+{"file":"list","msg":"should support partially lazy lines","t":"assert","test":"list"}
+{"file":"list","input":"> 1. > Blockquote\ncontinued here.","ok":"<blockquote>\n<ol>\n<li>\n<blockquote>\n<p>Blockquote\ncontinued here.</p>\n</blockquote>\n</li>\n</ol>\n</blockquote>","t":"html","test":"list"}
+{"file":"list","msg":"should support lazy lines combined w/ other containers","t":"assert","test":"list"}
+{"file":"list","input":"> 1. > Blockquote\n> continued here.","ok":"<blockquote>\n<ol>\n<li>\n<blockquote>\n<p>Blockquote\ncontinued here.</p>\n</blockquote>\n</li>\n</ol>\n</blockquote>","t":"html","test":"list"}
+{"file":"list","msg":"should support partially continued, partially lazy lines combined w/ other containers","t":"assert","test":"list"}
+{"file":"list","input":"- [\na","ok":"<ul>\n<li>[\na</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support lazy, definition-like lines","t":"assert","test":"list"}
+{"file":"list","input":"- [a]: b\nc","ok":"<ul>\n<li>c</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support a definition, followed by a lazy paragraph","t":"assert","test":"list"}
+{"file":"list","input":"- foo\n  - bar\n    - baz\n      - boo","ok":"<ul>\n<li>foo\n<ul>\n<li>bar\n<ul>\n<li>baz\n<ul>\n<li>boo</li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support sublists w/ enough spaces (1)","t":"assert","test":"list"}
+{"file":"list","input":"- foo\n - bar\n  - baz\n   - boo","ok":"<ul>\n<li>foo</li>\n<li>bar</li>\n<li>baz</li>\n<li>boo</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should not support sublists w/ too few spaces","t":"assert","test":"list"}
+{"file":"list","input":"10) foo\n    - bar","ok":"<ol start=\"10\">\n<li>foo\n<ul>\n<li>bar</li>\n</ul>\n</li>\n</ol>","t":"html","test":"list"}
+{"file":"list","msg":"should support sublists w/ enough spaces (2)","t":"assert","test":"list"}
+{"file":"list","input":"10) foo\n   - bar","ok":"<ol start=\"10\">\n<li>foo</li>\n</ol>\n<ul>\n<li>bar</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should not support sublists w/ too few spaces (2)","t":"assert","test":"list"}
+{"file":"list","input":"- - foo","ok":"<ul>\n<li>\n<ul>\n<li>foo</li>\n</ul>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support sublists (1)","t":"assert","test":"list"}
+{"file":"list","input":"1. - 2. foo","ok":"<ol>\n<li>\n<ul>\n<li>\n<ol start=\"2\">\n<li>foo</li>\n</ol>\n</li>\n</ul>\n</li>\n</ol>","t":"html","test":"list"}
+{"file":"list","msg":"should support sublists (2)","t":"assert","test":"list"}
+{"file":"list","input":"- # Foo\n- Bar\n  ---\n  baz","ok":"<ul>\n<li>\n<h1>Foo</h1>\n</li>\n<li>\n<h2>Bar</h2>\nbaz</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support headings in list items","t":"assert","test":"list"}
+{"file":"list","input":"- foo\n- bar\n+ baz","ok":"<ul>\n<li>foo</li>\n<li>bar</li>\n</ul>\n<ul>\n<li>baz</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support a new list by changing the marker (unordered)","t":"assert","test":"list"}
+{"file":"list","input":"1. foo\n2. bar\n3) baz","ok":"<ol>\n<li>foo</li>\n<li>bar</li>\n</ol>\n<ol start=\"3\">\n<li>baz</li>\n</ol>","t":"html","test":"list"}
+{"file":"list","msg":"should support a new list by changing the marker (ordered)","t":"assert","test":"list"}
+{"file":"list","input":"Foo\n- bar\n- baz","ok":"<p>Foo</p>\n<ul>\n<li>bar</li>\n<li>baz</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support interrupting a paragraph","t":"assert","test":"list"}
+{"file":"list","input":"a\n2. b","ok":"<p>a\n2. b</p>","t":"html","test":"list"}
+{"file":"list","msg":"should not support interrupting a paragraph with a non-1 numbered item","t":"assert","test":"list"}
+{"file":"list","input":"\n2. a","ok":"<ol start=\"2\">\n<li>a</li>\n</ol>","t":"html","test":"list"}
+{"file":"list","msg":"should \u201cinterrupt\u201d a blank line (1)","t":"assert","test":"list"}
+{"file":"list","input":"a\n\n2. b","ok":"<p>a</p>\n<ol start=\"2\">\n<li>b</li>\n</ol>","t":"html","test":"list"}
+{"file":"list","msg":"should \u201cinterrupt\u201d a blank line (2)","t":"assert","test":"list"}
+{"file":"list","input":"a\n1. b","ok":"<p>a</p>\n<ol>\n<li>b</li>\n</ol>","t":"html","test":"list"}
+{"file":"list","msg":"should support interrupting a paragraph with a 1 numbered item","t":"assert","test":"list"}
+{"file":"list","input":"- foo\n\n- bar\n\n\n- baz","ok":"<ul>\n<li>\n<p>foo</p>\n</li>\n<li>\n<p>bar</p>\n</li>\n<li>\n<p>baz</p>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support blank lines between items (1)","t":"assert","test":"list"}
+{"file":"list","input":"- foo\n  - bar\n    - baz\n\n\n      bim","ok":"<ul>\n<li>foo\n<ul>\n<li>bar\n<ul>\n<li>\n<p>baz</p>\n<p>bim</p>\n</li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support blank lines between items (2)","t":"assert","test":"list"}
+{"file":"list","input":"- foo\n- bar\n\n<!-- -->\n\n- baz\n- bim","o":{"esmParse":false,"expressionParse":false,"options":{"compile":{"allowAnyImgSrc":false,"allowDangerousHtml":true,"allowDangerousProtocol":true,"defaultLineEnding":"\n","gfmFootnoteBackLabel":null,"gfmFootnoteClobberPrefix":null,"gfmFootnoteLabel":null,"gfmFootnoteLabelAttributes":null,"gfmFootnoteLabelTagName":null,"gfmTagfilter":false,"gfmTaskListItemCheckable":false},"parse":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}}},"ok":"<ul>\n<li>foo</li>\n<li>bar</li>\n</ul>\n<!-- -->\n<ul>\n<li>baz</li>\n<li>bim</li>\n</ul>","t":"htmlOptions","test":"list"}
+{"file":"list","msg":"should support HTML comments between lists","t":"assert","test":"list"}
+{"file":"list","input":"-   foo\n\n    notcode\n\n-   foo\n\n<!-- -->\n\n    code","o":{"esmParse":false,"expressionParse":false,"options":{"compile":{"allowAnyImgSrc":false,"allowDangerousHtml":true,"allowDangerousProtocol":true,"defaultLineEnding":"\n","gfmFootnoteBackLabel":null,"gfmFootnoteClobberPrefix":null,"gfmFootnoteLabel":null,"gfmFootnoteLabelAttributes":null,"gfmFootnoteLabelTagName":null,"gfmTagfilter":false,"gfmTaskListItemCheckable":false},"parse":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}}},"ok":"<ul>\n<li>\n<p>foo</p>\n<p>notcode</p>\n</li>\n<li>\n<p>foo</p>\n</li>\n</ul>\n<!-- -->\n<pre><code>code\n</code></pre>","t":"htmlOptions","test":"list"}
+{"file":"list","msg":"should support HTML comments between lists and indented code","t":"assert","test":"list"}
+{"file":"list","input":"- a\n - b\n  - c\n   - d\n  - e\n - f\n- g","ok":"<ul>\n<li>a</li>\n<li>b</li>\n<li>c</li>\n<li>d</li>\n<li>e</li>\n<li>f</li>\n<li>g</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should not support lists in lists w/ too few spaces (1)","t":"assert","test":"list"}
+{"file":"list","input":"1. a\n\n  2. b\n\n   3. c","ok":"<ol>\n<li>\n<p>a</p>\n</li>\n<li>\n<p>b</p>\n</li>\n<li>\n<p>c</p>\n</li>\n</ol>","t":"html","test":"list"}
+{"file":"list","msg":"should not support lists in lists w/ too few spaces (2)","t":"assert","test":"list"}
+{"file":"list","input":"- a\n - b\n  - c\n   - d\n    - e","ok":"<ul>\n<li>a</li>\n<li>b</li>\n<li>c</li>\n<li>d\n- e</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should not support lists in lists w/ too few spaces (3)","t":"assert","test":"list"}
+{"file":"list","input":"1. a\n\n  2. b\n\n    3. c","ok":"<ol>\n<li>\n<p>a</p>\n</li>\n<li>\n<p>b</p>\n</li>\n</ol>\n<pre><code>3. c\n</code></pre>","t":"html","test":"list"}
+{"file":"list","msg":"should not support lists in lists w/ too few spaces (3)","t":"assert","test":"list"}
+{"file":"list","input":"- a\n- b\n\n- c","ok":"<ul>\n<li>\n<p>a</p>\n</li>\n<li>\n<p>b</p>\n</li>\n<li>\n<p>c</p>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support loose lists w/ a blank line between (1)","t":"assert","test":"list"}
+{"file":"list","input":"* a\n*\n\n* c","ok":"<ul>\n<li>\n<p>a</p>\n</li>\n<li></li>\n<li>\n<p>c</p>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support loose lists w/ a blank line between (2)","t":"assert","test":"list"}
+{"file":"list","input":"- a\n- b\n\n  c\n- d","ok":"<ul>\n<li>\n<p>a</p>\n</li>\n<li>\n<p>b</p>\n<p>c</p>\n</li>\n<li>\n<p>d</p>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support loose lists w/ a blank line in an item (1)","t":"assert","test":"list"}
+{"file":"list","input":"- a\n- b\n\n  [ref]: /url\n- d","ok":"<ul>\n<li>\n<p>a</p>\n</li>\n<li>\n<p>b</p>\n</li>\n<li>\n<p>d</p>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support loose lists w/ a blank line in an item (2)","t":"assert","test":"list"}
+{"file":"list","input":"- a\n- ```\n  b\n\n\n  ```\n- c","ok":"<ul>\n<li>a</li>\n<li>\n<pre><code>b\n\n\n</code></pre>\n</li>\n<li>c</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support tight lists w/ a blank line in fenced code","t":"assert","test":"list"}
+{"file":"list","input":"- a\n  - b\n\n    c\n- d","ok":"<ul>\n<li>a\n<ul>\n<li>\n<p>b</p>\n<p>c</p>\n</li>\n</ul>\n</li>\n<li>d</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support tight lists w/ a blank line in a sublist","t":"assert","test":"list"}
+{"file":"list","input":"* a\n  > b\n  >\n* c","ok":"<ul>\n<li>a\n<blockquote>\n<p>b</p>\n</blockquote>\n</li>\n<li>c</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support tight lists w/ a blank line in a block quote","t":"assert","test":"list"}
+{"file":"list","input":"- a\n  > b\n  ```\n  c\n  ```\n- d","ok":"<ul>\n<li>a\n<blockquote>\n<p>b</p>\n</blockquote>\n<pre><code>c\n</code></pre>\n</li>\n<li>d</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support tight lists w/ flow w/o blank line","t":"assert","test":"list"}
+{"file":"list","input":"- a","ok":"<ul>\n<li>a</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support tight lists w/ a single content","t":"assert","test":"list"}
+{"file":"list","input":"- a\n  - b","ok":"<ul>\n<li>a\n<ul>\n<li>b</li>\n</ul>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support tight lists w/ a sublist","t":"assert","test":"list"}
+{"file":"list","input":"1. ```\n   foo\n   ```\n\n   bar","ok":"<ol>\n<li>\n<pre><code>foo\n</code></pre>\n<p>bar</p>\n</li>\n</ol>","t":"html","test":"list"}
+{"file":"list","msg":"should support loose lists w/ a blank line in an item","t":"assert","test":"list"}
+{"file":"list","input":"* foo\n  * bar\n\n  baz","ok":"<ul>\n<li>\n<p>foo</p>\n<ul>\n<li>bar</li>\n</ul>\n<p>baz</p>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support loose lists w/ tight sublists (1)","t":"assert","test":"list"}
+{"file":"list","input":"- a\n  - b\n  - c\n\n- d\n  - e\n  - f","ok":"<ul>\n<li>\n<p>a</p>\n<ul>\n<li>b</li>\n<li>c</li>\n</ul>\n</li>\n<li>\n<p>d</p>\n<ul>\n<li>e</li>\n<li>f</li>\n</ul>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support loose lists w/ tight sublists (2)","t":"assert","test":"list"}
+{"file":"list","input":"* a\n*\n\n  \n\t\n* b","ok":"<ul>\n<li>\n<p>a</p>\n</li>\n<li></li>\n<li>\n<p>b</p>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support continued list items after an empty list item w/ many blank lines","t":"assert","test":"list"}
+{"file":"list","input":"*\n  ~~~p\n\n  ~~~","ok":"<ul>\n<li>\n<pre><code class=\"language-p\">\n</code></pre>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support blank lines in code after an initial blank line","t":"assert","test":"list"}
+{"file":"list","input":"* a tight item that ends with an html element: `x`\n\nParagraph","ok":"<ul>\n<li>a tight item that ends with an html element: <code>x</code></li>\n</ul>\n<p>Paragraph</p>","t":"html","test":"list"}
+{"file":"list","msg":"should ignore line endings after tight items ending in tags","t":"assert","test":"list"}
+{"file":"list","input":"*   foo\n\n*\n\n*   bar","ok":"<ul>\n<li>\n<p>foo</p>\n</li>\n<li></li>\n<li>\n<p>bar</p>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support empty items in a spread list","t":"assert","test":"list"}
+{"file":"list","input":"- ```\n\n  ```","ok":"<ul>\n<li>\n<pre><code>\n</code></pre>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should remove indent of code (fenced) in list (0 space)","t":"assert","test":"list"}
+{"file":"list","input":"- ```\n \n  ```","ok":"<ul>\n<li>\n<pre><code>\n</code></pre>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should remove indent of code (fenced) in list (1 space)","t":"assert","test":"list"}
+{"file":"list","input":"- ```\n  \n  ```","ok":"<ul>\n<li>\n<pre><code>\n</code></pre>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should remove indent of code (fenced) in list (2 spaces)","t":"assert","test":"list"}
+{"file":"list","input":"- ```\n   \n  ```","ok":"<ul>\n<li>\n<pre><code> \n</code></pre>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should remove indent of code (fenced) in list (3 spaces)","t":"assert","test":"list"}
+{"file":"list","input":"- ```\n    \n  ```","ok":"<ul>\n<li>\n<pre><code>  \n</code></pre>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should remove indent of code (fenced) in list (4 spaces)","t":"assert","test":"list"}
+{"file":"list","input":"- ```\n\t\n  ```","ok":"<ul>\n<li>\n<pre><code>  \n</code></pre>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should remove indent of code (fenced) in list (1 tab)","t":"assert","test":"list"}
+{"file":"list","input":"- +\n-","ok":"<ul>\n<li>\n<ul>\n<li></li>\n</ul>\n</li>\n<li></li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support complex nested and empty lists (1)","t":"assert","test":"list"}
+{"file":"list","input":"- 1.\n-","ok":"<ul>\n<li>\n<ol>\n<li></li>\n</ol>\n</li>\n<li></li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support complex nested and empty lists (2)","t":"assert","test":"list"}
+{"file":"list","input":"* - +\n* -","ok":"<ul>\n<li>\n<ul>\n<li>\n<ul>\n<li></li>\n</ul>\n</li>\n</ul>\n</li>\n<li>\n<ul>\n<li></li>\n</ul>\n</li>\n</ul>","t":"html","test":"list"}
+{"file":"list","msg":"should support complex nested and empty lists (3)","t":"assert","test":"list"}
+{"file":"list","input":"* a\n\n<!---->\n\n* b","o":{"esmParse":false,"expressionParse":false,"options":{"compile":{"allowAnyImgSrc":false,"allowDangerousHtml":true,"allowDangerousProtocol":true,"defaultLineEnding":"\n","gfmFootnoteBackLabel":null,"gfmFootnoteClobberPrefix":null,"gfmFootnoteLabel":null,"gfmFootnoteLabelAttributes":null,"gfmFootnoteLabelTagName":null,"gfmTagfilter":false,"gfmTaskListItemCheckable":false},"parse":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}}},"ok":"<ul>\n<li>a</li>\n</ul>\n<!---->\n<ul>\n<li>b</li>\n</ul>","t":"htmlOptions","test":"list"}
+{"file":"list","msg":"should support the common list breaking comment method","t":"assert","test":"list"}
+{"file":"list","input":"- one\n\n two","o":{"esmParse":false,"expressionParse":false,"options":{"compile":{"allowAnyImgSrc":false,"allowDangerousHtml":false,"allowDangerousProtocol":false,"defaultLineEnding":"\n","gfmFootnoteBackLabel":null,"gfmFootnoteClobberPrefix":null,"gfmFootnoteLabel":null,"gfmFootnoteLabelAttributes":null,"gfmFootnoteLabelTagName":null,"gfmTagfilter":false,"gfmTaskListItemCheckable":false},"parse":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":false,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}}},"ok":"<p>- one</p>\n<p>two</p>","t":"htmlOptions","test":"list"}
+{"file":"list","msg":"should support turning off lists","t":"assert","test":"list"}
+{"file":"list","input":"* a","o":{"esmParse":false,"expressionParse":false,"options":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}},"ok":"{\"type\":\"root\",\"children\":[{\"type\":\"list\",\"children\":[{\"type\":\"listItem\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"a\",\"position\":{\"start\":{\"line\":1,\"column\":3,\"offset\":2},\"end\":{\"line\":1,\"column\":4,\"offset\":3}}}],\"position\":{\"start\":{\"line\":1,\"column\":3,\"offset\":2},\"end\":{\"line\":1,\"column\":4,\"offset\":3}}}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":1,\"column\":4,\"offset\":3}},\"spread\":false}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":1,\"column\":4,\"offset\":3}},\"ordered\":false,\"spread\":false}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":1,\"column\":4,\"offset\":3}}}","t":"mdast","test":"list"}
+{"file":"list","msg":"should support lists, list items as `List`, `ListItem`s in mdast","t":"assert","test":"list"}
+{"file":"list","input":"3. a\n4. b","o":{"esmParse":false,"expressionParse":false,"options":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}},"ok":"{\"type\":\"root\",\"children\":[{\"type\":\"list\",\"children\":[{\"type\":\"listItem\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"a\",\"position\":{\"start\":{\"line\":1,\"column\":4,\"offset\":3},\"end\":{\"line\":1,\"column\":5,\"offset\":4}}}],\"position\":{\"start\":{\"line\":1,\"column\":4,\"offset\":3},\"end\":{\"line\":1,\"column\":5,\"offset\":4}}}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":1,\"column\":5,\"offset\":4}},\"spread\":false},{\"type\":\"listItem\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"b\",\"position\":{\"start\":{\"line\":2,\"column\":4,\"offset\":8},\"end\":{\"line\":2,\"column\":5,\"offset\":9}}}],\"position\":{\"start\":{\"line\":2,\"column\":4,\"offset\":8},\"end\":{\"line\":2,\"column\":5,\"offset\":9}}}],\"position\":{\"start\":{\"line\":2,\"column\":1,\"offset\":5},\"end\":{\"line\":2,\"column\":5,\"offset\":9}},\"spread\":false}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":2,\"column\":5,\"offset\":9}},\"ordered\":true,\"start\":3,\"spread\":false}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":2,\"column\":5,\"offset\":9}}}","t":"mdast","test":"list"}
+{"file":"list","msg":"should support `start` fields on `List` w/ `ordered: true` in mdast","t":"assert","test":"list"}
+{"file":"list","input":"* a\n\n  b\n* c","o":{"esmParse":false,"expressionParse":false,"options":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}},"ok":"{\"type\":\"root\",\"children\":[{\"type\":\"list\",\"children\":[{\"type\":\"listItem\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"a\",\"position\":{\"start\":{\"line\":1,\"column\":3,\"offset\":2},\"end\":{\"line\":1,\"column\":4,\"offset\":3}}}],\"position\":{\"start\":{\"line\":1,\"column\":3,\"offset\":2},\"end\":{\"line\":1,\"column\":4,\"offset\":3}}},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"b\",\"position\":{\"start\":{\"line\":3,\"column\":3,\"offset\":7},\"end\":{\"line\":3,\"column\":4,\"offset\":8}}}],\"position\":{\"start\":{\"line\":3,\"column\":3,\"offset\":7},\"end\":{\"line\":3,\"column\":4,\"offset\":8}}}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":3,\"column\":4,\"offset\":8}},\"spread\":true},{\"type\":\"listItem\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"c\",\"position\":{\"start\":{\"line\":4,\"column\":3,\"offset\":11},\"end\":{\"line\":4,\"column\":4,\"offset\":12}}}],\"position\":{\"start\":{\"line\":4,\"column\":3,\"offset\":11},\"end\":{\"line\":4,\"column\":4,\"offset\":12}}}],\"position\":{\"start\":{\"line\":4,\"column\":1,\"offset\":9},\"end\":{\"line\":4,\"column\":4,\"offset\":12}},\"spread\":false}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":4,\"column\":4,\"offset\":12}},\"ordered\":false,\"spread\":false}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":4,\"column\":4,\"offset\":12}}}","t":"mdast","test":"list"}
+{"file":"list","msg":"should support `spread` fields on `List`, `ListItem`s in mdast","t":"assert","test":"list"}

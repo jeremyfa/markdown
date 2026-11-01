@@ -1,0 +1,266 @@
+{"file":"attention","input":"*foo bar*","ok":"<p><em>foo bar</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support emphasis w/ `*`","t":"assert","test":"attention"}
+{"file":"attention","input":"a * foo bar*","ok":"<p>a * foo bar*</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support emphasis if the opening is not left flanking (1)","t":"assert","test":"attention"}
+{"file":"attention","input":"a*\"foo\"*","ok":"<p>a*&quot;foo&quot;*</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support emphasis if the opening is not left flanking (2b)","t":"assert","test":"attention"}
+{"file":"attention","input":"*\u00a0a\u00a0*","ok":"<p>*\u00a0a\u00a0*</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support emphasis unicode whitespace either","t":"assert","test":"attention"}
+{"file":"attention","input":"foo*bar*","ok":"<p>foo<em>bar</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support intraword emphasis w/ `*` (1)","t":"assert","test":"attention"}
+{"file":"attention","input":"5*6*78","ok":"<p>5<em>6</em>78</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support intraword emphasis w/ `*` (2)","t":"assert","test":"attention"}
+{"file":"attention","input":"_foo bar_","ok":"<p><em>foo bar</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support emphasis w/ `_`","t":"assert","test":"attention"}
+{"file":"attention","input":"_ foo bar_","ok":"<p>_ foo bar_</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support emphasis if the opening is followed by whitespace","t":"assert","test":"attention"}
+{"file":"attention","input":"a_\"foo\"_","ok":"<p>a_&quot;foo&quot;_</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support emphasis if the opening is preceded by something else and followed by punctuation","t":"assert","test":"attention"}
+{"file":"attention","input":"foo_bar_","ok":"<p>foo_bar_</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support intraword emphasis (1)","t":"assert","test":"attention"}
+{"file":"attention","input":"5_6_78","ok":"<p>5_6_78</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support intraword emphasis (2)","t":"assert","test":"attention"}
+{"file":"attention","input":"\u043f\u0440\u0438\u0441\u0442\u0430\u043d\u044f\u043c_\u0441\u0442\u0440\u0435\u043c\u044f\u0442\u0441\u044f_","ok":"<p>\u043f\u0440\u0438\u0441\u0442\u0430\u043d\u044f\u043c_\u0441\u0442\u0440\u0435\u043c\u044f\u0442\u0441\u044f_</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support intraword emphasis (3)","t":"assert","test":"attention"}
+{"file":"attention","input":"aa_\"bb\"_cc","ok":"<p>aa_&quot;bb&quot;_cc</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support emphasis if the opening is right flanking and the closing is left flanking","t":"assert","test":"attention"}
+{"file":"attention","input":"foo-_(bar)_","ok":"<p>foo-<em>(bar)</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support emphasis if the opening is both left and right flanking, if it\u2019s preceded by punctuation","t":"assert","test":"attention"}
+{"file":"attention","input":"_foo*","ok":"<p>_foo*</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support emphasis if opening and closing markers don\u2019t match","t":"assert","test":"attention"}
+{"file":"attention","input":"*foo bar *","ok":"<p>*foo bar *</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support emphasis w/ `*` if the closing markers are preceded by whitespace","t":"assert","test":"attention"}
+{"file":"attention","input":"*foo bar\n*","ok":"<p>*foo bar\n*</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support emphasis w/ `*` if the closing markers are preceded by a line break (also whitespace)","t":"assert","test":"attention"}
+{"file":"attention","input":"*(*foo)","ok":"<p>*(*foo)</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support emphasis w/ `*` if the closing markers are not right flanking","t":"assert","test":"attention"}
+{"file":"attention","input":"*(*foo*)*","ok":"<p><em>(<em>foo</em>)</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support nested emphasis","t":"assert","test":"attention"}
+{"file":"attention","input":"_foo bar _","ok":"<p>_foo bar _</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support emphasis if the closing `_` is preceded by whitespace","t":"assert","test":"attention"}
+{"file":"attention","input":"_(_foo)","ok":"<p>_(_foo)</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support emphasis w/ `_` if the closing markers are not right flanking","t":"assert","test":"attention"}
+{"file":"attention","input":"_(_foo_)_","ok":"<p><em>(<em>foo</em>)</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support nested emphasis w/ `_`","t":"assert","test":"attention"}
+{"file":"attention","input":"_foo_bar","ok":"<p>_foo_bar</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support intraword emphasis w/ `_` (1)","t":"assert","test":"attention"}
+{"file":"attention","input":"_\u043f\u0440\u0438\u0441\u0442\u0430\u043d\u044f\u043c_\u0441\u0442\u0440\u0435\u043c\u044f\u0442\u0441\u044f","ok":"<p>_\u043f\u0440\u0438\u0441\u0442\u0430\u043d\u044f\u043c_\u0441\u0442\u0440\u0435\u043c\u044f\u0442\u0441\u044f</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support intraword emphasis w/ `_` (2)","t":"assert","test":"attention"}
+{"file":"attention","input":"_foo_bar_baz_","ok":"<p><em>foo_bar_baz</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support intraword emphasis w/ `_` (3)","t":"assert","test":"attention"}
+{"file":"attention","input":"_(bar)_.","ok":"<p><em>(bar)</em>.</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support emphasis if the opening is both left and right flanking, if it\u2019s followed by punctuation","t":"assert","test":"attention"}
+{"file":"attention","input":"**foo bar**","ok":"<p><strong>foo bar</strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support strong emphasis","t":"assert","test":"attention"}
+{"file":"attention","input":"** foo bar**","ok":"<p>** foo bar**</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support strong emphasis if the opening is followed by whitespace","t":"assert","test":"attention"}
+{"file":"attention","input":"a**\"foo\"**","ok":"<p>a**&quot;foo&quot;**</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support strong emphasis if the opening is preceded by something else and followed by punctuation","t":"assert","test":"attention"}
+{"file":"attention","input":"foo**bar**","ok":"<p>foo<strong>bar</strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support strong intraword emphasis","t":"assert","test":"attention"}
+{"file":"attention","input":"__foo bar__","ok":"<p><strong>foo bar</strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support strong emphasis w/ `_`","t":"assert","test":"attention"}
+{"file":"attention","input":"__ foo bar__","ok":"<p>__ foo bar__</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support strong emphasis if the opening is followed by whitespace","t":"assert","test":"attention"}
+{"file":"attention","input":"__\nfoo bar__","ok":"<p>__\nfoo bar__</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support strong emphasis if the opening is followed by a line ending (also whitespace)","t":"assert","test":"attention"}
+{"file":"attention","input":"a__\"foo\"__","ok":"<p>a__&quot;foo&quot;__</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support strong emphasis if the opening is preceded by something else and followed by punctuation","t":"assert","test":"attention"}
+{"file":"attention","input":"foo__bar__","ok":"<p>foo__bar__</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support strong intraword emphasis w/ `_` (1)","t":"assert","test":"attention"}
+{"file":"attention","input":"5__6__78","ok":"<p>5__6__78</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support strong intraword emphasis w/ `_` (2)","t":"assert","test":"attention"}
+{"file":"attention","input":"\u043f\u0440\u0438\u0441\u0442\u0430\u043d\u044f\u043c__\u0441\u0442\u0440\u0435\u043c\u044f\u0442\u0441\u044f__","ok":"<p>\u043f\u0440\u0438\u0441\u0442\u0430\u043d\u044f\u043c__\u0441\u0442\u0440\u0435\u043c\u044f\u0442\u0441\u044f__</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support strong intraword emphasis w/ `_` (3)","t":"assert","test":"attention"}
+{"file":"attention","input":"__foo, __bar__, baz__","ok":"<p><strong>foo, <strong>bar</strong>, baz</strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support nested strong emphasis","t":"assert","test":"attention"}
+{"file":"attention","input":"foo-__(bar)__","ok":"<p>foo-<strong>(bar)</strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support strong emphasis if the opening is both left and right flanking, if it\u2019s preceded by punctuation","t":"assert","test":"attention"}
+{"file":"attention","input":"**foo bar **","ok":"<p>**foo bar **</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support strong emphasis w/ `*` if the closing is preceded by whitespace","t":"assert","test":"attention"}
+{"file":"attention","input":"**(**foo)","ok":"<p>**(**foo)</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support strong emphasis w/ `*` if the closing is preceded by punctuation and followed by something else","t":"assert","test":"attention"}
+{"file":"attention","input":"*(**foo**)*","ok":"<p><em>(<strong>foo</strong>)</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support strong emphasis in emphasis","t":"assert","test":"attention"}
+{"file":"attention","input":"**Gomphocarpus (*Gomphocarpus physocarpus*, syn.\n*Asclepias physocarpa*)**","ok":"<p><strong>Gomphocarpus (<em>Gomphocarpus physocarpus</em>, syn.\n<em>Asclepias physocarpa</em>)</strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support emphasis in strong emphasis (1)","t":"assert","test":"attention"}
+{"file":"attention","input":"**foo \"*bar*\" foo**","ok":"<p><strong>foo &quot;<em>bar</em>&quot; foo</strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support emphasis in strong emphasis (2)","t":"assert","test":"attention"}
+{"file":"attention","input":"**foo**bar","ok":"<p><strong>foo</strong>bar</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support strong intraword emphasis","t":"assert","test":"attention"}
+{"file":"attention","input":"__foo bar __","ok":"<p>__foo bar __</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support strong emphasis w/ `_` if the closing is preceded by whitespace","t":"assert","test":"attention"}
+{"file":"attention","input":"__(__foo)","ok":"<p>__(__foo)</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support strong emphasis w/ `_` if the closing is preceded by punctuation and followed by something else","t":"assert","test":"attention"}
+{"file":"attention","input":"_(__foo__)_","ok":"<p><em>(<strong>foo</strong>)</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support strong emphasis w/ `_` in emphasis","t":"assert","test":"attention"}
+{"file":"attention","input":"__foo__bar","ok":"<p>__foo__bar</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support strong intraword emphasis w/ `_` (1)","t":"assert","test":"attention"}
+{"file":"attention","input":"__\u043f\u0440\u0438\u0441\u0442\u0430\u043d\u044f\u043c__\u0441\u0442\u0440\u0435\u043c\u044f\u0442\u0441\u044f","ok":"<p>__\u043f\u0440\u0438\u0441\u0442\u0430\u043d\u044f\u043c__\u0441\u0442\u0440\u0435\u043c\u044f\u0442\u0441\u044f</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support strong intraword emphasis w/ `_` (2)","t":"assert","test":"attention"}
+{"file":"attention","input":"__foo__bar__baz__","ok":"<p><strong>foo__bar__baz</strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support strong intraword emphasis w/ `_` (3)","t":"assert","test":"attention"}
+{"file":"attention","input":"__(bar)__.","ok":"<p><strong>(bar)</strong>.</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support strong emphasis if the opening is both left and right flanking, if it\u2019s followed by punctuation","t":"assert","test":"attention"}
+{"file":"attention","input":"*foo [bar](/url)*","ok":"<p><em>foo <a href=\"/url\">bar</a></em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support content in emphasis","t":"assert","test":"attention"}
+{"file":"attention","input":"*foo\nbar*","ok":"<p><em>foo\nbar</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support line endings in emphasis","t":"assert","test":"attention"}
+{"file":"attention","input":"_foo __bar__ baz_","ok":"<p><em>foo <strong>bar</strong> baz</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support nesting emphasis and strong (1)","t":"assert","test":"attention"}
+{"file":"attention","input":"_foo _bar_ baz_","ok":"<p><em>foo <em>bar</em> baz</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support nesting emphasis and strong (2)","t":"assert","test":"attention"}
+{"file":"attention","input":"__foo_ bar_","ok":"<p><em><em>foo</em> bar</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support nesting emphasis and strong (3)","t":"assert","test":"attention"}
+{"file":"attention","input":"*foo *bar**","ok":"<p><em>foo <em>bar</em></em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support nesting emphasis and strong (4)","t":"assert","test":"attention"}
+{"file":"attention","input":"*foo **bar** baz*","ok":"<p><em>foo <strong>bar</strong> baz</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support nesting emphasis and strong (5)","t":"assert","test":"attention"}
+{"file":"attention","input":"*foo**bar**baz*","ok":"<p><em>foo<strong>bar</strong>baz</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support nesting emphasis and strong (6)","t":"assert","test":"attention"}
+{"file":"attention","input":"*foo**bar*","ok":"<p><em>foo**bar</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support adjacent emphasis in certain cases","t":"assert","test":"attention"}
+{"file":"attention","input":"***foo** bar*","ok":"<p><em><strong>foo</strong> bar</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"complex (1)","t":"assert","test":"attention"}
+{"file":"attention","input":"*foo **bar***","ok":"<p><em>foo <strong>bar</strong></em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"complex (2)","t":"assert","test":"attention"}
+{"file":"attention","input":"*foo**bar***","ok":"<p><em>foo<strong>bar</strong></em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"complex (3)","t":"assert","test":"attention"}
+{"file":"attention","input":"foo***bar***baz","ok":"<p>foo<em><strong>bar</strong></em>baz</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"complex (a)","t":"assert","test":"attention"}
+{"file":"attention","input":"foo******bar*********baz","ok":"<p>foo<strong><strong><strong>bar</strong></strong></strong>***baz</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"complex (b)","t":"assert","test":"attention"}
+{"file":"attention","input":"*foo **bar *baz* bim** bop*","ok":"<p><em>foo <strong>bar <em>baz</em> bim</strong> bop</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support indefinite nesting of emphasis (1)","t":"assert","test":"attention"}
+{"file":"attention","input":"*foo [*bar*](/url)*","ok":"<p><em>foo <a href=\"/url\"><em>bar</em></a></em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support indefinite nesting of emphasis (2)","t":"assert","test":"attention"}
+{"file":"attention","input":"** is not an empty emphasis","ok":"<p>** is not an empty emphasis</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support empty emphasis","t":"assert","test":"attention"}
+{"file":"attention","input":"**** is not an empty emphasis","ok":"<p>**** is not an empty emphasis</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support empty strong emphasis","t":"assert","test":"attention"}
+{"file":"attention","input":"**foo [bar](/url)**","ok":"<p><strong>foo <a href=\"/url\">bar</a></strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support content in strong emphasis","t":"assert","test":"attention"}
+{"file":"attention","input":"**foo\nbar**","ok":"<p><strong>foo\nbar</strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support line endings in emphasis","t":"assert","test":"attention"}
+{"file":"attention","input":"__foo _bar_ baz__","ok":"<p><strong>foo <em>bar</em> baz</strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support nesting emphasis and strong (1)","t":"assert","test":"attention"}
+{"file":"attention","input":"__foo __bar__ baz__","ok":"<p><strong>foo <strong>bar</strong> baz</strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support nesting emphasis and strong (2)","t":"assert","test":"attention"}
+{"file":"attention","input":"____foo__ bar__","ok":"<p><strong><strong>foo</strong> bar</strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support nesting emphasis and strong (3)","t":"assert","test":"attention"}
+{"file":"attention","input":"**foo **bar****","ok":"<p><strong>foo <strong>bar</strong></strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support nesting emphasis and strong (4)","t":"assert","test":"attention"}
+{"file":"attention","input":"**foo *bar* baz**","ok":"<p><strong>foo <em>bar</em> baz</strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support nesting emphasis and strong (5)","t":"assert","test":"attention"}
+{"file":"attention","input":"**foo*bar*baz**","ok":"<p><strong>foo<em>bar</em>baz</strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support nesting emphasis and strong (6)","t":"assert","test":"attention"}
+{"file":"attention","input":"***foo* bar**","ok":"<p><strong><em>foo</em> bar</strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support nesting emphasis and strong (7)","t":"assert","test":"attention"}
+{"file":"attention","input":"**foo *bar***","ok":"<p><strong>foo <em>bar</em></strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support nesting emphasis and strong (8)","t":"assert","test":"attention"}
+{"file":"attention","input":"**foo *bar **baz**\nbim* bop**","ok":"<p><strong>foo <em>bar <strong>baz</strong>\nbim</em> bop</strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support indefinite nesting of emphasis (1)","t":"assert","test":"attention"}
+{"file":"attention","input":"**foo [*bar*](/url)**","ok":"<p><strong>foo <a href=\"/url\"><em>bar</em></a></strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support indefinite nesting of emphasis (2)","t":"assert","test":"attention"}
+{"file":"attention","input":"__ is not an empty emphasis","ok":"<p>__ is not an empty emphasis</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support empty emphasis","t":"assert","test":"attention"}
+{"file":"attention","input":"____ is not an empty emphasis","ok":"<p>____ is not an empty emphasis</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support empty strong emphasis","t":"assert","test":"attention"}
+{"file":"attention","input":"foo ***","ok":"<p>foo ***</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support emphasis around the same marker","t":"assert","test":"attention"}
+{"file":"attention","input":"foo *\\**","ok":"<p>foo <em>*</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support emphasis around an escaped marker","t":"assert","test":"attention"}
+{"file":"attention","input":"foo *_*","ok":"<p>foo <em>_</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support emphasis around the other marker","t":"assert","test":"attention"}
+{"file":"attention","input":"foo *****","ok":"<p>foo *****</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support strong emphasis around the same marker","t":"assert","test":"attention"}
+{"file":"attention","input":"foo **\\***","ok":"<p>foo <strong>*</strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support strong emphasis around an escaped marker","t":"assert","test":"attention"}
+{"file":"attention","input":"foo **_**","ok":"<p>foo <strong>_</strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support strong emphasis around the other marker","t":"assert","test":"attention"}
+{"file":"attention","input":"**foo*","ok":"<p>*<em>foo</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support a superfluous marker at the start of emphasis","t":"assert","test":"attention"}
+{"file":"attention","input":"*foo**","ok":"<p><em>foo</em>*</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support a superfluous marker at the end of emphasis","t":"assert","test":"attention"}
+{"file":"attention","input":"***foo**","ok":"<p>*<strong>foo</strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support a superfluous marker at the start of strong","t":"assert","test":"attention"}
+{"file":"attention","input":"****foo*","ok":"<p>***<em>foo</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support multiple superfluous markers at the start of strong","t":"assert","test":"attention"}
+{"file":"attention","input":"**foo***","ok":"<p><strong>foo</strong>*</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support a superfluous marker at the end of strong","t":"assert","test":"attention"}
+{"file":"attention","input":"*foo****","ok":"<p><em>foo</em>***</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support multiple superfluous markers at the end of strong","t":"assert","test":"attention"}
+{"file":"attention","input":"foo ___","ok":"<p>foo ___</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support emphasis around the same marker","t":"assert","test":"attention"}
+{"file":"attention","input":"foo _\\__","ok":"<p>foo <em>_</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support emphasis around an escaped marker","t":"assert","test":"attention"}
+{"file":"attention","input":"foo _X_","ok":"<p>foo <em>X</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support emphasis around the other marker","t":"assert","test":"attention"}
+{"file":"attention","input":"foo _____","ok":"<p>foo _____</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support strong emphasis around the same marker","t":"assert","test":"attention"}
+{"file":"attention","input":"foo __\\___","ok":"<p>foo <strong>_</strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support strong emphasis around an escaped marker","t":"assert","test":"attention"}
+{"file":"attention","input":"foo __X__","ok":"<p>foo <strong>X</strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support strong emphasis around the other marker","t":"assert","test":"attention"}
+{"file":"attention","input":"__foo_","ok":"<p>_<em>foo</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support a superfluous marker at the start of emphasis","t":"assert","test":"attention"}
+{"file":"attention","input":"_foo__","ok":"<p><em>foo</em>_</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support a superfluous marker at the end of emphasis","t":"assert","test":"attention"}
+{"file":"attention","input":"___foo__","ok":"<p>_<strong>foo</strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support a superfluous marker at the start of strong","t":"assert","test":"attention"}
+{"file":"attention","input":"____foo_","ok":"<p>___<em>foo</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support multiple superfluous markers at the start of strong","t":"assert","test":"attention"}
+{"file":"attention","input":"__foo___","ok":"<p><strong>foo</strong>_</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support a superfluous marker at the end of strong","t":"assert","test":"attention"}
+{"file":"attention","input":"_foo____","ok":"<p><em>foo</em>___</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support multiple superfluous markers at the end of strong","t":"assert","test":"attention"}
+{"file":"attention","input":"**foo**","ok":"<p><strong>foo</strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support strong w/ `*`","t":"assert","test":"attention"}
+{"file":"attention","input":"*_foo_*","ok":"<p><em><em>foo</em></em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support emphasis directly in emphasis w/ `_` in `*`","t":"assert","test":"attention"}
+{"file":"attention","input":"__foo__","ok":"<p><strong>foo</strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support strong w/ `_`","t":"assert","test":"attention"}
+{"file":"attention","input":"_*foo*_","ok":"<p><em><em>foo</em></em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support emphasis directly in emphasis w/ `*` in `_`","t":"assert","test":"attention"}
+{"file":"attention","input":"****foo****","ok":"<p><strong><strong>foo</strong></strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support strong emphasis directly in strong emphasis w/ `*`","t":"assert","test":"attention"}
+{"file":"attention","input":"____foo____","ok":"<p><strong><strong>foo</strong></strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support strong emphasis directly in strong emphasis w/ `_`","t":"assert","test":"attention"}
+{"file":"attention","input":"******foo******","ok":"<p><strong><strong><strong>foo</strong></strong></strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support indefinite strong emphasis","t":"assert","test":"attention"}
+{"file":"attention","input":"***foo***","ok":"<p><em><strong>foo</strong></em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support strong directly in emphasis w/ `*`","t":"assert","test":"attention"}
+{"file":"attention","input":"___foo___","ok":"<p><em><strong>foo</strong></em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should support strong directly in emphasis w/ `_`","t":"assert","test":"attention"}
+{"file":"attention","input":"*foo _bar* baz_","ok":"<p><em>foo _bar</em> baz_</p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support mismatched emphasis","t":"assert","test":"attention"}
+{"file":"attention","input":"*foo __bar *baz bim__ bam*","ok":"<p><em>foo <strong>bar *baz bim</strong> bam</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not support mismatched strong emphasis","t":"assert","test":"attention"}
+{"file":"attention","input":"**foo **bar baz**","ok":"<p>**foo <strong>bar baz</strong></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not shortest strong possible","t":"assert","test":"attention"}
+{"file":"attention","input":"*foo *bar baz*","ok":"<p>*foo <em>bar baz</em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not shortest emphasis possible","t":"assert","test":"attention"}
+{"file":"attention","input":"*[bar*](/url)","ok":"<p>*<a href=\"/url\">bar*</a></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not mismatch inside links (1)","t":"assert","test":"attention"}
+{"file":"attention","input":"_[bar_](/url)","ok":"<p>_<a href=\"/url\">bar_</a></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not mismatch inside links (1)","t":"assert","test":"attention"}
+{"file":"attention","input":"*<img src=\"foo\" title=\"*\"/>","o":{"esmParse":false,"expressionParse":false,"options":{"compile":{"allowAnyImgSrc":false,"allowDangerousHtml":true,"allowDangerousProtocol":true,"defaultLineEnding":"\n","gfmFootnoteBackLabel":null,"gfmFootnoteClobberPrefix":null,"gfmFootnoteLabel":null,"gfmFootnoteLabelAttributes":null,"gfmFootnoteLabelTagName":null,"gfmTagfilter":false,"gfmTaskListItemCheckable":false},"parse":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}}},"ok":"<p>*<img src=\"foo\" title=\"*\"/></p>","t":"htmlOptions","test":"attention"}
+{"file":"attention","msg":"should not end inside HTML","t":"assert","test":"attention"}
+{"file":"attention","input":"*<img src=\"foo\" title=\"*\"/>","o":{"esmParse":false,"expressionParse":false,"options":{"compile":{"allowAnyImgSrc":false,"allowDangerousHtml":true,"allowDangerousProtocol":true,"defaultLineEnding":"\n","gfmFootnoteBackLabel":null,"gfmFootnoteClobberPrefix":null,"gfmFootnoteLabel":null,"gfmFootnoteLabelAttributes":null,"gfmFootnoteLabelTagName":null,"gfmTagfilter":false,"gfmTaskListItemCheckable":false},"parse":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}}},"ok":"<p>*<img src=\"foo\" title=\"*\"/></p>","t":"htmlOptions","test":"attention"}
+{"file":"attention","msg":"should not end emphasis inside HTML","t":"assert","test":"attention"}
+{"file":"attention","input":"**<a href=\"**\">","o":{"esmParse":false,"expressionParse":false,"options":{"compile":{"allowAnyImgSrc":false,"allowDangerousHtml":true,"allowDangerousProtocol":true,"defaultLineEnding":"\n","gfmFootnoteBackLabel":null,"gfmFootnoteClobberPrefix":null,"gfmFootnoteLabel":null,"gfmFootnoteLabelAttributes":null,"gfmFootnoteLabelTagName":null,"gfmTagfilter":false,"gfmTaskListItemCheckable":false},"parse":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}}},"ok":"<p>**<a href=\"**\"></p>","t":"htmlOptions","test":"attention"}
+{"file":"attention","msg":"should not end strong inside HTML (1)","t":"assert","test":"attention"}
+{"file":"attention","input":"__<a href=\"__\">","o":{"esmParse":false,"expressionParse":false,"options":{"compile":{"allowAnyImgSrc":false,"allowDangerousHtml":true,"allowDangerousProtocol":true,"defaultLineEnding":"\n","gfmFootnoteBackLabel":null,"gfmFootnoteClobberPrefix":null,"gfmFootnoteLabel":null,"gfmFootnoteLabelAttributes":null,"gfmFootnoteLabelTagName":null,"gfmTagfilter":false,"gfmTaskListItemCheckable":false},"parse":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}}},"ok":"<p>__<a href=\"__\"></p>","t":"htmlOptions","test":"attention"}
+{"file":"attention","msg":"should not end strong inside HTML (2)","t":"assert","test":"attention"}
+{"file":"attention","input":"*a `*`*","ok":"<p><em>a <code>*</code></em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not end emphasis inside code (1)","t":"assert","test":"attention"}
+{"file":"attention","input":"_a `_`_","ok":"<p><em>a <code>_</code></em></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not end emphasis inside code (2)","t":"assert","test":"attention"}
+{"file":"attention","input":"**a<http://foo.bar/?q=**>","ok":"<p>**a<a href=\"http://foo.bar/?q=**\">http://foo.bar/?q=**</a></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not end strong emphasis inside autolinks (1)","t":"assert","test":"attention"}
+{"file":"attention","input":"__a<http://foo.bar/?q=__>","ok":"<p>__a<a href=\"http://foo.bar/?q=__\">http://foo.bar/?q=__</a></p>","t":"html","test":"attention"}
+{"file":"attention","msg":"should not end strong emphasis inside autolinks (2)","t":"assert","test":"attention"}
+{"file":"attention","input":"*a*","o":{"esmParse":false,"expressionParse":false,"options":{"compile":{"allowAnyImgSrc":false,"allowDangerousHtml":false,"allowDangerousProtocol":false,"defaultLineEnding":"\n","gfmFootnoteBackLabel":null,"gfmFootnoteClobberPrefix":null,"gfmFootnoteLabel":null,"gfmFootnoteLabelAttributes":null,"gfmFootnoteLabelTagName":null,"gfmTagfilter":false,"gfmTaskListItemCheckable":false},"parse":{"constructs":{"attention":false,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}}},"ok":"<p>*a*</p>","t":"htmlOptions","test":"attention"}
+{"file":"attention","msg":"should support turning off attention","t":"assert","test":"attention"}
+{"file":"attention","input":"a *alpha* b **bravo** c.","o":{"esmParse":false,"expressionParse":false,"options":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}},"ok":"{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"a \",\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":1,\"column\":3,\"offset\":2}}},{\"type\":\"emphasis\",\"children\":[{\"type\":\"text\",\"value\":\"alpha\",\"position\":{\"start\":{\"line\":1,\"column\":4,\"offset\":3},\"end\":{\"line\":1,\"column\":9,\"offset\":8}}}],\"position\":{\"start\":{\"line\":1,\"column\":3,\"offset\":2},\"end\":{\"line\":1,\"column\":10,\"offset\":9}}},{\"type\":\"text\",\"value\":\" b \",\"position\":{\"start\":{\"line\":1,\"column\":10,\"offset\":9},\"end\":{\"line\":1,\"column\":13,\"offset\":12}}},{\"type\":\"strong\",\"children\":[{\"type\":\"text\",\"value\":\"bravo\",\"position\":{\"start\":{\"line\":1,\"column\":15,\"offset\":14},\"end\":{\"line\":1,\"column\":20,\"offset\":19}}}],\"position\":{\"start\":{\"line\":1,\"column\":13,\"offset\":12},\"end\":{\"line\":1,\"column\":22,\"offset\":21}}},{\"type\":\"text\",\"value\":\" c.\",\"position\":{\"start\":{\"line\":1,\"column\":22,\"offset\":21},\"end\":{\"line\":1,\"column\":25,\"offset\":24}}}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":1,\"column\":25,\"offset\":24}}}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":1,\"column\":25,\"offset\":24}}}","t":"mdast","test":"attention"}
+{"file":"attention","msg":"should support attention as `Emphasis`, `Strong`s in mdast","t":"assert","test":"attention"}

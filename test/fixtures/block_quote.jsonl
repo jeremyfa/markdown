@@ -1,0 +1,68 @@
+{"file":"block_quote","input":"> # a\n> b\n> c","ok":"<blockquote>\n<h1>a</h1>\n<p>b\nc</p>\n</blockquote>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should support block quotes","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"># a\n>b\n> c","ok":"<blockquote>\n<h1>a</h1>\n<p>b\nc</p>\n</blockquote>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should support block quotes w/o space","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"   > # a\n   > b\n > c","ok":"<blockquote>\n<h1>a</h1>\n<p>b\nc</p>\n</blockquote>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should support prefixing block quotes w/ spaces","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"    > # a\n    > b\n    > c","ok":"<pre><code>&gt; # a\n&gt; b\n&gt; c\n</code></pre>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should not support block quotes w/ 4 spaces","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"> # a\n> b\nc","ok":"<blockquote>\n<h1>a</h1>\n<p>b\nc</p>\n</blockquote>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should support lazy content lines","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"> a\nb\n> c","ok":"<blockquote>\n<p>a\nb\nc</p>\n</blockquote>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should support lazy content lines inside block quotes","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"> a\n> ---","ok":"<blockquote>\n<h2>a</h2>\n</blockquote>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should support setext headings underlines in block quotes","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"> a\n---","ok":"<blockquote>\n<p>a</p>\n</blockquote>\n<hr />","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should not support lazy setext headings underlines in block quotes","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"> - a\n> - b","ok":"<blockquote>\n<ul>\n<li>a</li>\n<li>b</li>\n</ul>\n</blockquote>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should support lists in block quotes","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"> - a\n- b","ok":"<blockquote>\n<ul>\n<li>a</li>\n</ul>\n</blockquote>\n<ul>\n<li>b</li>\n</ul>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should not support lazy lists in block quotes","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":">     a\n    b","ok":"<blockquote>\n<pre><code>a\n</code></pre>\n</blockquote>\n<pre><code>b\n</code></pre>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should not support lazy indented code in block quotes","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"> ```\na\n```","ok":"<blockquote>\n<pre><code></code></pre>\n</blockquote>\n<p>a</p>\n<pre><code></code></pre>\n","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should not support lazy fenced code in block quotes (1)","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"> a\n```\nb","ok":"<blockquote>\n<p>a</p>\n</blockquote>\n<pre><code>b\n</code></pre>\n","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should not support lazy fenced code in block quotes (2)","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"> a\n    - b","ok":"<blockquote>\n<p>a\n- b</p>\n</blockquote>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should not support lazy indented code (or lazy list) in block quotes","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"> [\na","ok":"<blockquote>\n<p>[\na</p>\n</blockquote>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should support lazy, definition-like lines","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"> [a]: b\nc","ok":"<blockquote>\n<p>c</p>\n</blockquote>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should support a definition, followed by a lazy paragraph","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":">","ok":"<blockquote>\n</blockquote>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should support empty block quotes (1)","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":">\n>  \n> ","ok":"<blockquote>\n</blockquote>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should support empty block quotes (2)","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":">\n> a\n>  ","ok":"<blockquote>\n<p>a</p>\n</blockquote>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should support initial or final lazy empty block quote lines","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"> a\n\n> b","ok":"<blockquote>\n<p>a</p>\n</blockquote>\n<blockquote>\n<p>b</p>\n</blockquote>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should support adjacent block quotes","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"> a\n> b","ok":"<blockquote>\n<p>a\nb</p>\n</blockquote>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should support a paragraph in a block quote","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"> a\n>\n> b","ok":"<blockquote>\n<p>a</p>\n<p>b</p>\n</blockquote>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should support adjacent paragraphs in block quotes","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"[a]\n\n> [a]: b","ok":"<p><a href=\"b\">a</a></p>\n<blockquote>\n</blockquote>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should support a definition in a block quote (1)","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"> [a]: b\n\n[a]","ok":"<blockquote>\n</blockquote>\n<p><a href=\"b\">a</a></p>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should support a definition in a block quote (2)","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"a\n> b","ok":"<p>a</p>\n<blockquote>\n<p>b</p>\n</blockquote>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should support interrupting paragraphs w/ block quotes","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"> a\n***\n> b","ok":"<blockquote>\n<p>a</p>\n</blockquote>\n<hr />\n<blockquote>\n<p>b</p>\n</blockquote>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should support interrupting block quotes w/ thematic breaks","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"> a\nb","ok":"<blockquote>\n<p>a\nb</p>\n</blockquote>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should not support interrupting block quotes w/ paragraphs","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"> a\n\nb","ok":"<blockquote>\n<p>a</p>\n</blockquote>\n<p>b</p>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should support interrupting block quotes w/ blank lines","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"> a\n>\nb","ok":"<blockquote>\n<p>a</p>\n</blockquote>\n<p>b</p>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should not support interrupting a blank line in a block quotes w/ paragraphs","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"> > > a\nb","ok":"<blockquote>\n<blockquote>\n<blockquote>\n<p>a\nb</p>\n</blockquote>\n</blockquote>\n</blockquote>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should not support interrupting many block quotes w/ paragraphs (1)","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":">>> a\n> b\n>>c","ok":"<blockquote>\n<blockquote>\n<blockquote>\n<p>a\nb\nc</p>\n</blockquote>\n</blockquote>\n</blockquote>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should not support interrupting many block quotes w/ paragraphs (2)","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":">     a\n\n>    b","ok":"<blockquote>\n<pre><code>a\n</code></pre>\n</blockquote>\n<blockquote>\n<p>b</p>\n</blockquote>","t":"html","test":"block_quote"}
+{"file":"block_quote","msg":"should support 5 spaces for indented code, not 4","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"> # a\n> b\n> c","o":{"esmParse":false,"expressionParse":false,"options":{"compile":{"allowAnyImgSrc":false,"allowDangerousHtml":false,"allowDangerousProtocol":false,"defaultLineEnding":"\n","gfmFootnoteBackLabel":null,"gfmFootnoteClobberPrefix":null,"gfmFootnoteLabel":null,"gfmFootnoteLabelAttributes":null,"gfmFootnoteLabelTagName":null,"gfmTagfilter":false,"gfmTaskListItemCheckable":false},"parse":{"constructs":{"attention":true,"autolink":true,"blockQuote":false,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}}},"ok":"<p>&gt; # a\n&gt; b\n&gt; c</p>","t":"htmlOptions","test":"block_quote"}
+{"file":"block_quote","msg":"should support turning off block quotes","t":"assert","test":"block_quote"}
+{"file":"block_quote","input":"> a","o":{"esmParse":false,"expressionParse":false,"options":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}},"ok":"{\"type\":\"root\",\"children\":[{\"type\":\"blockquote\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"a\",\"position\":{\"start\":{\"line\":1,\"column\":3,\"offset\":2},\"end\":{\"line\":1,\"column\":4,\"offset\":3}}}],\"position\":{\"start\":{\"line\":1,\"column\":3,\"offset\":2},\"end\":{\"line\":1,\"column\":4,\"offset\":3}}}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":1,\"column\":4,\"offset\":3}}}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":1,\"column\":4,\"offset\":3}}}","t":"mdast","test":"block_quote"}
+{"file":"block_quote","msg":"should support block quotes as `BlockQuote`s in mdast","t":"assert","test":"block_quote"}

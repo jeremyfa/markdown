@@ -1,0 +1,94 @@
+{"file":"code_fenced","input":"```\n<\n >\n```","ok":"<pre><code>&lt;\n &gt;\n</code></pre>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support fenced code w/ grave accents","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"~~~\n<\n >\n~~~","ok":"<pre><code>&lt;\n &gt;\n</code></pre>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support fenced code w/ tildes","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"``\nfoo\n``","ok":"<p><code>foo</code></p>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should not support fenced code w/ less than three markers","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"```\naaa\n~~~\n```","ok":"<pre><code>aaa\n~~~\n</code></pre>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should not support a tilde closing sequence for a grave accent opening sequence","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"~~~\naaa\n```\n~~~","ok":"<pre><code>aaa\n```\n</code></pre>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should not support a grave accent closing sequence for a tilde opening sequence","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"````\naaa\n```\n``````","ok":"<pre><code>aaa\n```\n</code></pre>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support a closing sequence longer, but not shorter than, the opening","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"~~~~\naaa\n~~~\n~~~~","ok":"<pre><code>aaa\n~~~\n</code></pre>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support a closing sequence equal to, but not shorter than, the opening","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"```","ok":"<pre><code></code></pre>\n","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support an eof right after an opening sequence","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"`````\n\n```\naaa\n","ok":"<pre><code>\n```\naaa\n</code></pre>\n","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support an eof somewhere in content","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"> ```\n> aaa\n\nbbb","ok":"<blockquote>\n<pre><code>aaa\n</code></pre>\n</blockquote>\n<p>bbb</p>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support no closing sequence in a block quote","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"```\n\n  \n```","ok":"<pre><code>\n  \n</code></pre>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support blank lines in fenced code","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"```\n```","ok":"<pre><code></code></pre>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support empty fenced code","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":" ```\n aaa\naaa\n```","ok":"<pre><code>aaa\naaa\n</code></pre>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should remove up to one space from the content if the opening sequence is indented w/ 1 space","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"  ```\naaa\n  aaa\naaa\n  ```","ok":"<pre><code>aaa\naaa\naaa\n</code></pre>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should remove up to two space from the content if the opening sequence is indented w/ 2 spaces","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"   ```\n   aaa\n    aaa\n  aaa\n   ```","ok":"<pre><code>aaa\n aaa\naaa\n</code></pre>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should remove up to three space from the content if the opening sequence is indented w/ 3 spaces","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"    ```\n    aaa\n    ```","ok":"<pre><code>```\naaa\n```\n</code></pre>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should not support indenteding the opening sequence w/ 4 spaces","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"```\naaa\n  ```","ok":"<pre><code>aaa\n</code></pre>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support an indented closing sequence","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"   ```\naaa\n  ```","ok":"<pre><code>aaa\n</code></pre>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support a differently indented closing sequence than the opening sequence","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"```\naaa\n    ```\n","ok":"<pre><code>aaa\n    ```\n</code></pre>\n","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should not support an indented closing sequence w/ 4 spaces","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"``` ```\naaa","ok":"<p><code> </code>\naaa</p>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should not support grave accents in the opening fence after the opening sequence","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"~~~~~~\naaa\n~~~ ~~\n","ok":"<pre><code>aaa\n~~~ ~~\n</code></pre>\n","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should not support spaces in the closing sequence","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"foo\n```\nbar\n```\nbaz","ok":"<p>foo</p>\n<pre><code>bar\n</code></pre>\n<p>baz</p>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support interrupting paragraphs","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"foo\n---\n~~~\nbar\n~~~\n# baz","ok":"<h2>foo</h2>\n<pre><code>bar\n</code></pre>\n<h1>baz</h1>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support interrupting other content","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"```ruby\ndef foo(x)\n  return 3\nend\n```","ok":"<pre><code class=\"language-ruby\">def foo(x)\n  return 3\nend\n</code></pre>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support the info string as a `language-` class (1)","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"````;\n````","ok":"<pre><code class=\"language-;\"></code></pre>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support the info string as a `language-` class (2)","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"~~~~    ruby startline=3 $%@#$\ndef foo(x)\n  return 3\nend\n~~~~~~~","ok":"<pre><code class=\"language-ruby\">def foo(x)\n  return 3\nend\n</code></pre>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support the info string as a `language-` class, but not the meta string","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"``` aa ```\nfoo","ok":"<p><code>aa</code>\nfoo</p>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should not support grave accents in the meta string","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"~~~ aa ``` ~~~\nfoo\n~~~","ok":"<pre><code class=\"language-aa\">foo\n</code></pre>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support grave accents and tildes in the meta string of tilde fenced code","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"```\n``` aaa\n```","ok":"<pre><code>``` aaa\n</code></pre>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should not support info string on closing sequences","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"```  ","ok":"<pre><code></code></pre>\n","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support an eof after whitespace, after the start fence sequence","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"```  js\nalert(1)\n```","ok":"<pre><code class=\"language-js\">alert(1)\n</code></pre>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support whitespace between the sequence and the info string","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"```js","ok":"<pre><code class=\"language-js\"></code></pre>\n","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support an eof after the info string","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"```  js \nalert(1)\n```","ok":"<pre><code class=\"language-js\">alert(1)\n</code></pre>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support whitespace after the info string","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"```\n  ","ok":"<pre><code>  \n</code></pre>\n","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support an eof after whitespace in content","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"  ```\n ","ok":"<pre><code></code></pre>\n","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support an eof in the prefix, in content","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"```j\\+s&copy;","ok":"<pre><code class=\"language-j+s\u00a9\"></code></pre>\n","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support character escapes and character references in info strings","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"```a\\&b\u0000c","ok":"<pre><code class=\"language-a&amp;b\ufffdc\"></code></pre>\n","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should encode dangerous characters in languages","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"   ```\naaa\n    ```","ok":"<pre><code>aaa\n ```\n</code></pre>\n","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should not support a closing sequence w/ too much indent, regardless of opening sequence (1)","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"> ```\n>\n>\n>\n\na","ok":"<blockquote>\n<pre><code>\n\n\n</code></pre>\n</blockquote>\n<p>a</p>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should not support a closing sequence w/ too much indent, regardless of opening sequence (2)","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"> ```a\nb","ok":"<blockquote>\n<pre><code class=\"language-a\"></code></pre>\n</blockquote>\n<p>b</p>","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should not support lazyness (1)","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"> a\n```b","ok":"<blockquote>\n<p>a</p>\n</blockquote>\n<pre><code class=\"language-b\"></code></pre>\n","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should not support lazyness (2)","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"> ```a\n```","ok":"<blockquote>\n<pre><code class=\"language-a\"></code></pre>\n</blockquote>\n<pre><code></code></pre>\n","t":"html","test":"code_fenced"}
+{"file":"code_fenced","msg":"should not support lazyness (3)","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"```","o":{"esmParse":false,"expressionParse":false,"options":{"compile":{"allowAnyImgSrc":false,"allowDangerousHtml":false,"allowDangerousProtocol":false,"defaultLineEnding":"\n","gfmFootnoteBackLabel":null,"gfmFootnoteClobberPrefix":null,"gfmFootnoteLabel":null,"gfmFootnoteLabelAttributes":null,"gfmFootnoteLabelTagName":null,"gfmTagfilter":false,"gfmTaskListItemCheckable":false},"parse":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":false,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}}},"ok":"<p>```</p>","t":"htmlOptions","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support turning off code (fenced)","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"```js extra\nconsole.log(1)\nconsole.log(2)\n```","o":{"esmParse":false,"expressionParse":false,"options":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}},"ok":"{\"type\":\"root\",\"children\":[{\"type\":\"code\",\"value\":\"console.log(1)\\nconsole.log(2)\",\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":4,\"column\":4,\"offset\":45}},\"lang\":\"js\",\"meta\":\"extra\"}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":4,\"column\":4,\"offset\":45}}}","t":"mdast","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support code (fenced) as `Code`s in mdast","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"```\nasd","o":{"esmParse":false,"expressionParse":false,"options":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}},"ok":"{\"type\":\"root\",\"children\":[{\"type\":\"code\",\"value\":\"asd\",\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":2,\"column\":4,\"offset\":7}}}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":2,\"column\":4,\"offset\":7}}}","t":"mdast","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support code (fenced) w/o closing fence in mdast","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"```\rasd\r```","o":{"esmParse":false,"expressionParse":false,"options":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}},"ok":"{\"type\":\"root\",\"children\":[{\"type\":\"code\",\"value\":\"asd\",\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":3,\"column\":4,\"offset\":11}}}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":3,\"column\":4,\"offset\":11}}}","t":"mdast","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support code (fenced) w/o CR line endings","t":"assert","test":"code_fenced"}
+{"file":"code_fenced","input":"```\r\nasd\r\n```","o":{"esmParse":false,"expressionParse":false,"options":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}},"ok":"{\"type\":\"root\",\"children\":[{\"type\":\"code\",\"value\":\"asd\",\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":3,\"column\":4,\"offset\":13}}}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":3,\"column\":4,\"offset\":13}}}","t":"mdast","test":"code_fenced"}
+{"file":"code_fenced","msg":"should support code (fenced) w/o CR+LF line endings","t":"assert","test":"code_fenced"}

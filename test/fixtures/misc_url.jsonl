@@ -1,0 +1,12 @@
+{"file":"misc_url","input":"<https://%>","ok":"<p><a href=\"https://%25\">https://%</a></p>","t":"html","test":"url"}
+{"file":"misc_url","msg":"should support incorrect percentage encoded values (0)","t":"assert","test":"url"}
+{"file":"misc_url","input":"[](<%>)","ok":"<p><a href=\"%25\"></a></p>","t":"html","test":"url"}
+{"file":"misc_url","msg":"should support incorrect percentage encoded values (1)","t":"assert","test":"url"}
+{"file":"misc_url","input":"[](<%%20>)","ok":"<p><a href=\"%25%20\"></a></p>","t":"html","test":"url"}
+{"file":"misc_url","msg":"should support incorrect percentage encoded values (2)","t":"assert","test":"url"}
+{"file":"misc_url","input":"[](<%a%20>)","ok":"<p><a href=\"%25a%20\"></a></p>","t":"html","test":"url"}
+{"file":"misc_url","msg":"should support incorrect percentage encoded values (3)","t":"assert","test":"url"}
+{"file":"misc_url","input":"[](<\ud83e\udd14>)","ok":"<p><a href=\"%F0%9F%A4%94\"></a></p>","t":"html","test":"url"}
+{"file":"misc_url","msg":"should support an emoji","t":"assert","test":"url"}
+{"file":"misc_url","input":"[](<\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\u000b\f\u000e\u000f\u0010\u0011\u0012\u0013\u0014\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !\"#$%&'()*+,-./0123456789:;\\<=\\>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\u007f>)","ok":"<p><a href=\"%EF%BF%BD%01%02%03%04%05%06%07%08%09%0B%0C%0E%0F%10%11%12%13%14%15%16%17%18%19%1A%1B%1C%1D%1E%1F%20!%22#$%25&amp;'()*+,-./0123456789:;%3C=%3E?@ABCDEFGHIJKLMNOPQRSTUVWXYZ%5B%5C%5D%5E_%60abcdefghijklmnopqrstuvwxyz%7B%7C%7D~%7F\"></a></p>","t":"html","test":"url"}
+{"file":"misc_url","msg":"should support ascii characters","t":"assert","test":"url"}

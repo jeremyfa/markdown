@@ -1,0 +1,4 @@
+{"file":"misc_soft_break","input":"foo\nbaz","ok":"<p>foo\nbaz</p>","t":"html","test":"soft_break"}
+{"file":"misc_soft_break","msg":"should support line endings","t":"assert","test":"soft_break"}
+{"file":"misc_soft_break","input":"foo \n baz","ok":"<p>foo\nbaz</p>","t":"html","test":"soft_break"}
+{"file":"misc_soft_break","msg":"should trim spaces around line endings","t":"assert","test":"soft_break"}

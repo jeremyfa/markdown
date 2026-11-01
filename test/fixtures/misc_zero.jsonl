@@ -1,0 +1,10 @@
+{"file":"misc_zero","input":"","ok":"","t":"html","test":"zero"}
+{"file":"misc_zero","msg":"should support no markdown","t":"assert","test":"zero"}
+{"file":"misc_zero","input":"asd\u0000asd","ok":"<p>asd\ufffdasd</p>","t":"html","test":"zero"}
+{"file":"misc_zero","msg":"should replace `\\0` w/ a replacement characters (`\ufffd`)","t":"assert","test":"zero"}
+{"file":"misc_zero","input":"&#0;","ok":"<p>\ufffd</p>","t":"html","test":"zero"}
+{"file":"misc_zero","msg":"should replace NUL in a character reference","t":"assert","test":"zero"}
+{"file":"misc_zero","input":"\\0","ok":"<p>\\0</p>","t":"html","test":"zero"}
+{"file":"misc_zero","msg":"should not support NUL in a character escape","t":"assert","test":"zero"}
+{"file":"misc_zero","input":"","o":{"esmParse":false,"expressionParse":false,"options":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}},"ok":"{\"type\":\"root\",\"children\":[],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":1,\"column\":1,\"offset\":0}}}","t":"mdast","test":"zero"}
+{"file":"misc_zero","msg":"should support no markdown (ast)","t":"assert","test":"zero"}

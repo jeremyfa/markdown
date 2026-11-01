@@ -1,0 +1,4 @@
+{"file":"misc_bom","input":"\ufeff","ok":"","t":"html","test":"bom"}
+{"file":"misc_bom","msg":"should ignore just a bom","t":"assert","test":"bom"}
+{"file":"misc_bom","input":"\ufeff# hea\ufeffding","ok":"<h1>hea\ufeffding</h1>","t":"html","test":"bom"}
+{"file":"misc_bom","msg":"should ignore a bom","t":"assert","test":"bom"}

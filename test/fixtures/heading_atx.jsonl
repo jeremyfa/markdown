@@ -1,0 +1,70 @@
+{"file":"heading_atx","input":"# foo","ok":"<h1>foo</h1>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should support a heading w/ rank 1","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"## foo","ok":"<h2>foo</h2>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should support a heading w/ rank 2","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"### foo","ok":"<h3>foo</h3>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should support a heading w/ rank 3","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"#### foo","ok":"<h4>foo</h4>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should support a heading w/ rank 4","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"##### foo","ok":"<h5>foo</h5>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should support a heading w/ rank 5","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"###### foo","ok":"<h6>foo</h6>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should support a heading w/ rank 6","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"####### foo","ok":"<p>####### foo</p>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should not support a heading w/ rank 7","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"#5 bolt","ok":"<p>#5 bolt</p>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should not support a heading for a number sign not followed by whitespace (1)","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"#hashtag","ok":"<p>#hashtag</p>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should not support a heading for a number sign not followed by whitespace (2)","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"\\## foo","ok":"<p>## foo</p>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should not support a heading for an escaped number sign","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"# foo *bar* \\*baz\\*","ok":"<h1>foo <em>bar</em> *baz*</h1>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should support text content in headings","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"#                  foo                     ","ok":"<h1>foo</h1>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should support arbitrary initial and final whitespace","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":" ### foo","ok":"<h3>foo</h3>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should support an initial space","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"  ## foo","ok":"<h2>foo</h2>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should support two initial spaces","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"   # foo","ok":"<h1>foo</h1>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should support three initial spaces","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"    # foo","ok":"<pre><code># foo\n</code></pre>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should not support four initial spaces","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"foo\n    # bar","ok":"<p>foo\n# bar</p>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should not support four initial spaces when interrupting","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"## foo ##","ok":"<h2>foo</h2>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should support a closing sequence (1)","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"  ###   bar    ###","ok":"<h3>bar</h3>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should support a closing sequence (2)","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"# foo ##################################","ok":"<h1>foo</h1>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should support a closing sequence w/ an arbitrary number of number signs (1)","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"##### foo ##","ok":"<h5>foo</h5>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should support a closing sequence w/ an arbitrary number of number signs (2)","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"### foo ###     ","ok":"<h3>foo</h3>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should support trailing whitespace after a closing sequence","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"### foo ### b","ok":"<h3>foo ### b</h3>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should not support other content after a closing sequence","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"# foo#","ok":"<h1>foo#</h1>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should not support a closing sequence w/o whitespace before it","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"### foo \\###","ok":"<h3>foo ###</h3>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should not support an \u201cescaped\u201d closing sequence (1)","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"## foo #\\##","ok":"<h2>foo ###</h2>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should not support an \u201cescaped\u201d closing sequence (2)","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"# foo \\#","ok":"<h1>foo #</h1>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should not support an \u201cescaped\u201d closing sequence (3)","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"****\n## foo\n****","ok":"<hr />\n<h2>foo</h2>\n<hr />","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should support atx headings when not surrounded by blank lines","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"Foo bar\n# baz\nBar foo","ok":"<p>Foo bar</p>\n<h1>baz</h1>\n<p>Bar foo</p>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should support atx headings interrupting paragraphs","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"## \n#\n### ###","ok":"<h2></h2>\n<h1></h1>\n<h3></h3>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should support empty atx headings (1)","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"#\na\n# b","ok":"<h1></h1>\n<p>a</p>\n<h1>b</h1>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should support empty atx headings (2)","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"> #\na","ok":"<blockquote>\n<h1></h1>\n</blockquote>\n<p>a</p>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should not support lazyness (1)","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"> a\n#","ok":"<blockquote>\n<p>a</p>\n</blockquote>\n<h1></h1>","t":"html","test":"heading_atx"}
+{"file":"heading_atx","msg":"should not support lazyness (2)","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"# a","o":{"esmParse":false,"expressionParse":false,"options":{"compile":{"allowAnyImgSrc":false,"allowDangerousHtml":false,"allowDangerousProtocol":false,"defaultLineEnding":"\n","gfmFootnoteBackLabel":null,"gfmFootnoteClobberPrefix":null,"gfmFootnoteLabel":null,"gfmFootnoteLabelAttributes":null,"gfmFootnoteLabelTagName":null,"gfmTagfilter":false,"gfmTaskListItemCheckable":false},"parse":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":false,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}}},"ok":"<p># a</p>","t":"htmlOptions","test":"heading_atx"}
+{"file":"heading_atx","msg":"should support turning off heading (atx)","t":"assert","test":"heading_atx"}
+{"file":"heading_atx","input":"## alpha #","o":{"esmParse":false,"expressionParse":false,"options":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}},"ok":"{\"type\":\"root\",\"children\":[{\"type\":\"heading\",\"children\":[{\"type\":\"text\",\"value\":\"alpha\",\"position\":{\"start\":{\"line\":1,\"column\":4,\"offset\":3},\"end\":{\"line\":1,\"column\":9,\"offset\":8}}}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":1,\"column\":11,\"offset\":10}},\"depth\":2}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":1,\"column\":11,\"offset\":10}}}","t":"mdast","test":"heading_atx"}
+{"file":"heading_atx","msg":"should support heading (atx) as `Heading`s in mdast","t":"assert","test":"heading_atx"}

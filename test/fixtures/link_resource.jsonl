@@ -1,0 +1,152 @@
+{"file":"link_resource","input":"[link](/uri \"title\")","ok":"<p><a href=\"/uri\" title=\"title\">link</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support links","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](/uri)","ok":"<p><a href=\"/uri\">link</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support links w/o title","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link]()","ok":"<p><a href=\"\">link</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support links w/o destination","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](<>)","ok":"<p><a href=\"\">link</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support links w/ empty enclosed destination","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](/my uri)","ok":"<p>[link](/my uri)</p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should not support links w/ spaces in destination","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](</my uri>)","ok":"<p><a href=\"/my%20uri\">link</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support links w/ spaces in enclosed destination","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](foo\nbar)","ok":"<p>[link](foo\nbar)</p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should not support links w/ line endings in destination","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](<foo\nbar>)","o":{"esmParse":false,"expressionParse":false,"options":{"compile":{"allowAnyImgSrc":false,"allowDangerousHtml":true,"allowDangerousProtocol":true,"defaultLineEnding":"\n","gfmFootnoteBackLabel":null,"gfmFootnoteClobberPrefix":null,"gfmFootnoteLabel":null,"gfmFootnoteLabelAttributes":null,"gfmFootnoteLabelTagName":null,"gfmTagfilter":false,"gfmTaskListItemCheckable":false},"parse":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}}},"ok":"<p>[link](<foo\nbar>)</p>","t":"htmlOptions","test":"link_resource"}
+{"file":"link_resource","msg":"should not support links w/ line endings in enclosed destination","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[a](<b)c>)","ok":"<p><a href=\"b)c\">a</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support links w/ closing parens in destination","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](<foo\\>)","ok":"<p>[link](&lt;foo&gt;)</p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should not support links w/ enclosed destinations w/o end","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[a](<b)c\n[a](<b)c>\n[a](<b>c)","o":{"esmParse":false,"expressionParse":false,"options":{"compile":{"allowAnyImgSrc":false,"allowDangerousHtml":true,"allowDangerousProtocol":true,"defaultLineEnding":"\n","gfmFootnoteBackLabel":null,"gfmFootnoteClobberPrefix":null,"gfmFootnoteLabel":null,"gfmFootnoteLabelAttributes":null,"gfmFootnoteLabelTagName":null,"gfmTagfilter":false,"gfmTaskListItemCheckable":false},"parse":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}}},"ok":"<p>[a](&lt;b)c\n[a](&lt;b)c&gt;\n[a](<b>c)</p>","t":"htmlOptions","test":"link_resource"}
+{"file":"link_resource","msg":"should not support links w/ unmatched enclosed destinations","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](\\(foo\\))","ok":"<p><a href=\"(foo)\">link</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support links w/ destinations w/ escaped parens","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](foo(and(bar)))","ok":"<p><a href=\"foo(and(bar))\">link</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support links w/ destinations w/ balanced parens","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](foo\\(and\\(bar\\))","ok":"<p><a href=\"foo(and(bar)\">link</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support links w/ destinations w/ escaped parens","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](<foo(and(bar)>)","ok":"<p><a href=\"foo(and(bar)\">link</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support links w/ enclosed destinations w/ parens","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](foo\\)\\:)","o":{"esmParse":false,"expressionParse":false,"options":{"compile":{"allowAnyImgSrc":false,"allowDangerousHtml":true,"allowDangerousProtocol":true,"defaultLineEnding":"\n","gfmFootnoteBackLabel":null,"gfmFootnoteClobberPrefix":null,"gfmFootnoteLabel":null,"gfmFootnoteLabelAttributes":null,"gfmFootnoteLabelTagName":null,"gfmTagfilter":false,"gfmTaskListItemCheckable":false},"parse":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}}},"ok":"<p><a href=\"foo):\">link</a></p>","t":"htmlOptions","test":"link_resource"}
+{"file":"link_resource","msg":"should support links w/ escapes in destinations","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](#fragment)","ok":"<p><a href=\"#fragment\">link</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support links w/ destinations to fragments","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](http://example.com#fragment)","ok":"<p><a href=\"http://example.com#fragment\">link</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support links w/ destinations to URLs w/ fragments","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](http://example.com?foo=3#frag)","ok":"<p><a href=\"http://example.com?foo=3#frag\">link</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support links w/ destinations to URLs w/ search and fragments","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](foo\\bar)","ok":"<p><a href=\"foo%5Cbar\">link</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should not support non-punctuation character escapes in links","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](foo%20b&auml;)","ok":"<p><a href=\"foo%20b%C3%A4\">link</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support character references in links","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](\"title\")","ok":"<p><a href=\"%22title%22\">link</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should not support links w/ only a title","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](/url \"title\")","ok":"<p><a href=\"/url\" title=\"title\">link</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support titles w/ double quotes","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](/url 'title')","ok":"<p><a href=\"/url\" title=\"title\">link</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support titles w/ single quotes","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](/url (title))","ok":"<p><a href=\"/url\" title=\"title\">link</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support titles w/ parens","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](/url \"title \\\"&quot;\")","ok":"<p><a href=\"/url\" title=\"title &quot;&quot;\">link</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support character references and escapes in titles","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](/url\u00a0\"title\")","ok":"<p><a href=\"/url%C2%A0%22title%22\">link</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should not support unicode whitespace between destination and title","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](/url \"title \"and\" title\")","ok":"<p>[link](/url &quot;title &quot;and&quot; title&quot;)</p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should not support nested balanced quotes in title","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](/url 'title \"and\" title')","ok":"<p><a href=\"/url\" title=\"title &quot;and&quot; title\">link</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support the other quotes in titles","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](   /uri\n  \"title\"  )","ok":"<p><a href=\"/uri\" title=\"title\">link</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support whitespace around destination and title (1)","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](\t\n/uri \"title\")","ok":"<p><a href=\"/uri\" title=\"title\">link</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support whitespace around destination and title (2)","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link](/uri  \"title\"\t\n)","ok":"<p><a href=\"/uri\" title=\"title\">link</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support whitespace around destination and title (3)","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link] (/uri)","ok":"<p>[link] (/uri)</p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should not support whitespace between label and resource","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link [foo [bar]]](/uri)","ok":"<p><a href=\"/uri\">link [foo [bar]]</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support balanced brackets","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link] bar](/uri)","ok":"<p>[link] bar](/uri)</p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should not support unbalanced brackets (1)","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link [bar](/uri)","ok":"<p>[link <a href=\"/uri\">bar</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should not support unbalanced brackets (2)","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link \\[bar](/uri)","ok":"<p><a href=\"/uri\">link [bar</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support characer escapes","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[link *foo **bar** `#`*](/uri)","ok":"<p><a href=\"/uri\">link <em>foo <strong>bar</strong> <code>#</code></em></a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support content","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[![moon](moon.jpg)](/uri)","ok":"<p><a href=\"/uri\"><img src=\"moon.jpg\" alt=\"moon\" /></a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support an image as content","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[foo [bar](/uri)](/uri)","ok":"<p>[foo <a href=\"/uri\">bar</a>](/uri)</p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should not support links in links (1)","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[foo *[bar [baz](/uri)](/uri)*](/uri)","ok":"<p>[foo <em>[bar <a href=\"/uri\">baz</a>](/uri)</em>](/uri)</p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should not support links in links (2)","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"![[[foo](uri1)](uri2)](uri3)","ok":"<p><img src=\"uri3\" alt=\"[foo](uri2)\" /></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should not support links in links (3)","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"*[foo*](/uri)","ok":"<p>*<a href=\"/uri\">foo*</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should prefer links over emphasis (1)","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[foo *bar](baz*)","ok":"<p><a href=\"baz*\">foo *bar</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should prefer links over emphasis (2)","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[foo <bar attr=\"](baz)\">","o":{"esmParse":false,"expressionParse":false,"options":{"compile":{"allowAnyImgSrc":false,"allowDangerousHtml":true,"allowDangerousProtocol":true,"defaultLineEnding":"\n","gfmFootnoteBackLabel":null,"gfmFootnoteClobberPrefix":null,"gfmFootnoteLabel":null,"gfmFootnoteLabelAttributes":null,"gfmFootnoteLabelTagName":null,"gfmTagfilter":false,"gfmTaskListItemCheckable":false},"parse":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}}},"ok":"<p>[foo <bar attr=\"](baz)\"></p>","t":"htmlOptions","test":"link_resource"}
+{"file":"link_resource","msg":"should prefer HTML over links","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[foo`](/uri)`","ok":"<p>[foo<code>](/uri)</code></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should prefer code over links","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[foo<http://example.com/?search=](uri)>","ok":"<p>[foo<a href=\"http://example.com/?search=%5D(uri)\">http://example.com/?search=](uri)</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should prefer autolinks over links","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[foo<http://example.com/?search=](uri)>","ok":"<p>[foo<a href=\"http://example.com/?search=%5D(uri)\">http://example.com/?search=](uri)</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should prefer autolinks over links","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[]()","ok":"<p><a href=\"\"></a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support an empty link","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[](<> \"\")","ok":"<p><a href=\"\"></a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should ignore an empty title","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[a](<b>\"c\")","o":{"esmParse":false,"expressionParse":false,"options":{"compile":{"allowAnyImgSrc":false,"allowDangerousHtml":true,"allowDangerousProtocol":true,"defaultLineEnding":"\n","gfmFootnoteBackLabel":null,"gfmFootnoteClobberPrefix":null,"gfmFootnoteLabel":null,"gfmFootnoteLabelAttributes":null,"gfmFootnoteLabelTagName":null,"gfmTagfilter":false,"gfmTaskListItemCheckable":false},"parse":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}}},"ok":"<p>[a](<b>&quot;c&quot;)</p>","t":"htmlOptions","test":"link_resource"}
+{"file":"link_resource","msg":"should require whitespace between enclosed destination and title","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[](<","ok":"<p>[](&lt;</p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should not support an unclosed enclosed destination","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[](","ok":"<p>[](</p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should not support an unclosed destination","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[](\\<)","ok":"<p><a href=\"%3C\"></a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support unenclosed link destination starting w/ escapes","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[](<\\<>)","ok":"<p><a href=\"%3C\"></a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support enclosed link destination starting w/ escapes","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[](\\","ok":"<p>[](\\</p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should not support unenclosed link destination starting w/ an incorrect escape","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[](<\\","ok":"<p>[](&lt;\\</p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should not support enclosed link destination starting w/ an incorrect escape","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[](a \"","ok":"<p>[](a &quot;</p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should not support an eof in a link title (1)","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[](a '","ok":"<p>[](a '</p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should not support an eof in a link title (2)","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[](a (","ok":"<p>[](a (</p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should not support an eof in a link title (3)","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[](a \"\\","ok":"<p>[](a &quot;\\</p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should not support an eof in a link title escape (1)","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[](a '\\","ok":"<p>[](a '\\</p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should not support an eof in a link title escape (2)","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[](a (\\","ok":"<p>[](a (\\</p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should not support an eof in a link title escape (3)","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[](a \"\\\"\")","ok":"<p><a href=\"a\" title=\"&quot;\"></a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support a character escape to start a link title (1)","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[](a '\\'')","ok":"<p><a href=\"a\" title=\"'\"></a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support a character escape to start a link title (2)","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[](a (\\)))","ok":"<p><a href=\"a\" title=\")\"></a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support a character escape to start a link title (3)","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[&amp;&copy;&](example.com/&amp;&copy;& \"&amp;&copy;&\")","ok":"<p><a href=\"example.com/&amp;%C2%A9&amp;\" title=\"&amp;\u00a9&amp;\">&amp;\u00a9&amp;</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support character references in links","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[a](1())","ok":"<p><a href=\"1()\">a</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support 1 set of parens","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[a](1(2()))","ok":"<p><a href=\"1(2())\">a</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support 2 sets of parens","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[a](1(2(3(4(5(6(7(8(9(10(11(12(13(14(15(16(17(18(19(20(21(22(23(24(25(26(27(28(29(30(31(32()))))))))))))))))))))))))))))))))","ok":"<p><a href=\"1(2(3(4(5(6(7(8(9(10(11(12(13(14(15(16(17(18(19(20(21(22(23(24(25(26(27(28(29(30(31(32())))))))))))))))))))))))))))))))\">a</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support 32 sets of parens","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[a](1(2(3(4(5(6(7(8(9(10(11(12(13(14(15(16(17(18(19(20(21(22(23(24(25(26(27(28(29(30(31(32(33())))))))))))))))))))))))))))))))))","ok":"<p>[a](1(2(3(4(5(6(7(8(9(10(11(12(13(14(15(16(17(18(19(20(21(22(23(24(25(26(27(28(29(30(31(32(33())))))))))))))))))))))))))))))))))</p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should not support 33 or more sets of parens","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[a](b \"\n c\")","ok":"<p><a href=\"b\" title=\"\nc\">a</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support an eol at the start of a title","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[a](b( \"c\")","ok":"<p>[a](b( &quot;c&quot;)</p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should not support whitespace when unbalanced in a raw destination","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[a](\u0000)","ok":"<p><a href=\"%EF%BF%BD\">a</a></p>","t":"html","test":"link_resource"}
+{"file":"link_resource","msg":"should support a single NUL character as a link resource","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"a [alpha]() b [bravo](charlie 'delta') c.","o":{"esmParse":false,"expressionParse":false,"options":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}},"ok":"{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"a \",\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":1,\"column\":3,\"offset\":2}}},{\"type\":\"link\",\"children\":[{\"type\":\"text\",\"value\":\"alpha\",\"position\":{\"start\":{\"line\":1,\"column\":4,\"offset\":3},\"end\":{\"line\":1,\"column\":9,\"offset\":8}}}],\"position\":{\"start\":{\"line\":1,\"column\":3,\"offset\":2},\"end\":{\"line\":1,\"column\":12,\"offset\":11}},\"url\":\"\"},{\"type\":\"text\",\"value\":\" b \",\"position\":{\"start\":{\"line\":1,\"column\":12,\"offset\":11},\"end\":{\"line\":1,\"column\":15,\"offset\":14}}},{\"type\":\"link\",\"children\":[{\"type\":\"text\",\"value\":\"bravo\",\"position\":{\"start\":{\"line\":1,\"column\":16,\"offset\":15},\"end\":{\"line\":1,\"column\":21,\"offset\":20}}}],\"position\":{\"start\":{\"line\":1,\"column\":15,\"offset\":14},\"end\":{\"line\":1,\"column\":39,\"offset\":38}},\"url\":\"charlie\",\"title\":\"delta\"},{\"type\":\"text\",\"value\":\" c.\",\"position\":{\"start\":{\"line\":1,\"column\":39,\"offset\":38},\"end\":{\"line\":1,\"column\":42,\"offset\":41}}}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":1,\"column\":42,\"offset\":41}}}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":1,\"column\":42,\"offset\":41}}}","t":"mdast","test":"link_resource"}
+{"file":"link_resource","msg":"should support link (resource) as `Link`s in mdast","t":"assert","test":"link_resource"}
+{"file":"link_resource","input":"[![name](image)](url)","o":{"esmParse":false,"expressionParse":false,"options":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}},"ok":"{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"link\",\"children\":[{\"type\":\"image\",\"position\":{\"start\":{\"line\":1,\"column\":2,\"offset\":1},\"end\":{\"line\":1,\"column\":16,\"offset\":15}},\"alt\":\"name\",\"url\":\"image\"}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":1,\"column\":22,\"offset\":21}},\"url\":\"url\"}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":1,\"column\":22,\"offset\":21}}}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":1,\"column\":22,\"offset\":21}}}","t":"mdast","test":"link_resource"}
+{"file":"link_resource","msg":"should support nested links in mdast","t":"assert","test":"link_resource"}

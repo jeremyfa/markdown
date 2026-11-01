@@ -1,0 +1,39 @@
+markdown-rs is licensed under the MIT license. This Haxe port keeps the same
+terms.
+
+The port also includes data derived from:
+- unicode-id 0.3.6 (the ID_Start and ID_Continue tables in
+  src/markdown/util/Identifier.hx), Copyright 2012-2015 The Rust Project
+  Developers, licensed under MIT OR Apache-2.0 (used here under MIT);
+- the Rust core library (the case mapping, Cased and Case_Ignorable tables in
+  src/markdown/util/CaseMap.hx, generated with rustc 1.94), Copyright The
+  Rust Project Developers, licensed under MIT OR Apache-2.0 (used here under
+  MIT).
+
+The test fixtures in test/fixtures were recorded from the test suite of
+markdown-rs 1.0.0 (same copyright and license).
+
+================================================================================
+
+(The MIT License)
+
+Copyright (c) 2022 Titus Wormer <tituswormer@gmail.com>
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

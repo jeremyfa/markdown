@@ -1,0 +1,160 @@
+{"file":"definition","input":"[foo]: /url \"title\"\n\n[foo]","ok":"<p><a href=\"/url\" title=\"title\">foo</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support link definitions","t":"assert","test":"definition"}
+{"file":"definition","input":"[foo]:\n\n/url\n\n[foo]","ok":"<p>[foo]:</p>\n<p>/url</p>\n<p>[foo]</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should not support blank lines before destination","t":"assert","test":"definition"}
+{"file":"definition","input":"   [foo]: \n      /url  \n           'the title'  \n\n[foo]","ok":"<p><a href=\"/url\" title=\"the title\">foo</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support whitespace and line endings in definitions","t":"assert","test":"definition"}
+{"file":"definition","input":"[a]:b 'c'\n\n[a]","ok":"<p><a href=\"b\" title=\"c\">a</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support no whitespace after `:` in definitions","t":"assert","test":"definition"}
+{"file":"definition","input":"[Foo*bar\\]]:my_(url) 'title (with parens)'\n\n[Foo*bar\\]]","ok":"<p><a href=\"my_(url)\" title=\"title (with parens)\">Foo*bar]</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support complex definitions (1)","t":"assert","test":"definition"}
+{"file":"definition","input":"[Foo bar]:\n<my url>\n'title'\n\n[Foo bar]","ok":"<p><a href=\"my%20url\" title=\"title\">Foo bar</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support complex definitions (2)","t":"assert","test":"definition"}
+{"file":"definition","input":"[foo]: /url '\ntitle\nline1\nline2\n'\n\n[foo]","ok":"<p><a href=\"/url\" title=\"\ntitle\nline1\nline2\n\">foo</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support line endings in titles","t":"assert","test":"definition"}
+{"file":"definition","input":"[foo]: /url 'title\n\nwith blank line'\n\n[foo]","ok":"<p>[foo]: /url 'title</p>\n<p>with blank line'</p>\n<p>[foo]</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should not support blank lines in titles","t":"assert","test":"definition"}
+{"file":"definition","input":"[foo]:\n/url\n\n[foo]","ok":"<p><a href=\"/url\">foo</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support definitions w/o title","t":"assert","test":"definition"}
+{"file":"definition","input":"[foo]:\n\n[foo]","ok":"<p>[foo]:</p>\n<p>[foo]</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should not support definitions w/o destination","t":"assert","test":"definition"}
+{"file":"definition","input":"[foo]: <>\n\n[foo]","ok":"<p><a href=\"\">foo</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support definitions w/ explicit empty destinations","t":"assert","test":"definition"}
+{"file":"definition","input":"[foo]: <bar>(baz)\n\n[foo]","o":{"esmParse":false,"expressionParse":false,"options":{"compile":{"allowAnyImgSrc":false,"allowDangerousHtml":true,"allowDangerousProtocol":true,"defaultLineEnding":"\n","gfmFootnoteBackLabel":null,"gfmFootnoteClobberPrefix":null,"gfmFootnoteLabel":null,"gfmFootnoteLabelAttributes":null,"gfmFootnoteLabelTagName":null,"gfmTagfilter":false,"gfmTaskListItemCheckable":false},"parse":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}}},"ok":"<p>[foo]: <bar>(baz)</p>\n<p>[foo]</p>","t":"htmlOptions","test":"definition"}
+{"file":"definition","msg":"should not support definitions w/ no whitespace between destination and title","t":"assert","test":"definition"}
+{"file":"definition","input":"[foo]: /url\\bar\\*baz \"foo\\\"bar\\baz\"\n\n[foo]","ok":"<p><a href=\"/url%5Cbar*baz\" title=\"foo&quot;bar\\baz\">foo</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support character escapes in destinations and titles","t":"assert","test":"definition"}
+{"file":"definition","input":"[foo]\n\n[foo]: url","ok":"<p><a href=\"url\">foo</a></p>\n","t":"html","test":"definition"}
+{"file":"definition","msg":"should support a link before a definition","t":"assert","test":"definition"}
+{"file":"definition","input":"[foo]: first\n[foo]: second\n\n[foo]","ok":"<p><a href=\"first\">foo</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should match w/ the first definition","t":"assert","test":"definition"}
+{"file":"definition","input":"[FOO]: /url\n\n[Foo]","ok":"<p><a href=\"/url\">Foo</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should match w/ case-insensitive (1)","t":"assert","test":"definition"}
+{"file":"definition","input":"[\u0391\u0393\u03a9]: /\u03c6\u03bf\u03c5\n\n[\u03b1\u03b3\u03c9]","ok":"<p><a href=\"/%CF%86%CE%BF%CF%85\">\u03b1\u03b3\u03c9</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should match w/ case-insensitive (2)","t":"assert","test":"definition"}
+{"file":"definition","input":"[\u0131]: a\n\n[I]","ok":"<p><a href=\"a\">I</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should match w/ undotted turkish i (1)","t":"assert","test":"definition"}
+{"file":"definition","input":"[I]: a\n\n[\u0131]","ok":"<p><a href=\"a\">\u0131</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should match w/ undotted turkish i (2)","t":"assert","test":"definition"}
+{"file":"definition","input":"[i]: a\n\n[\u0130]","ok":"<p>[\u0130]</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should *not* match w/ dotted turkish i (1)","t":"assert","test":"definition"}
+{"file":"definition","input":"[\u0130]: a\n\n[i]","ok":"<p>[i]</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should *not* match w/ dotted turkish i (2)","t":"assert","test":"definition"}
+{"file":"definition","input":"[foo]: /url","ok":"","t":"html","test":"definition"}
+{"file":"definition","msg":"should not contribute anything w/o reference (1)","t":"assert","test":"definition"}
+{"file":"definition","input":"[\nfoo\n]: /url\nbar","ok":"<p>bar</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should not contribute anything w/o reference (2)","t":"assert","test":"definition"}
+{"file":"definition","input":"[foo]: /url \"title\"  \n\n[foo]","ok":"<p><a href=\"/url\" title=\"title\">foo</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support whitespace after title","t":"assert","test":"definition"}
+{"file":"definition","input":"[foo]: /url\n\"title\"  \n\n[foo]","ok":"<p><a href=\"/url\" title=\"title\">foo</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support whitespace after title on a separate line","t":"assert","test":"definition"}
+{"file":"definition","input":"[foo]: /url \"title\" ok","ok":"<p>[foo]: /url &quot;title&quot; ok</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should not support non-whitespace content after definitions (1)","t":"assert","test":"definition"}
+{"file":"definition","input":"[foo]: /url\n\"title\" ok","ok":"<p>&quot;title&quot; ok</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should not support non-whitespace content after definitions (2)","t":"assert","test":"definition"}
+{"file":"definition","input":"    [foo]: /url \"title\"\n\n[foo]","ok":"<pre><code>[foo]: /url &quot;title&quot;\n</code></pre>\n<p>[foo]</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should prefer indented code over definitions","t":"assert","test":"definition"}
+{"file":"definition","input":"```\n[foo]: /url\n```\n\n[foo]","ok":"<pre><code>[foo]: /url\n</code></pre>\n<p>[foo]</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should not support definitions in fenced code","t":"assert","test":"definition"}
+{"file":"definition","input":"Foo\n[bar]: /baz\n\n[bar]","ok":"<p>Foo\n[bar]: /baz</p>\n<p>[bar]</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should not support definitions in paragraphs","t":"assert","test":"definition"}
+{"file":"definition","input":"# [Foo]\n[foo]: /url\n> bar","ok":"<h1><a href=\"/url\">Foo</a></h1>\n<blockquote>\n<p>bar</p>\n</blockquote>","t":"html","test":"definition"}
+{"file":"definition","msg":"should not support definitions in headings","t":"assert","test":"definition"}
+{"file":"definition","input":"[foo]: /url\nbar\n===\n[foo]","ok":"<h1>bar</h1>\n<p><a href=\"/url\">foo</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support setext headings after definitions","t":"assert","test":"definition"}
+{"file":"definition","input":"[a]: b\n=","ok":"<p>=</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should not support setext heading underlines after definitions (1)","t":"assert","test":"definition"}
+{"file":"definition","input":"[foo]: /url\n===\n[foo]","ok":"<p>===\n<a href=\"/url\">foo</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should not support setext heading underlines after definitions (2)","t":"assert","test":"definition"}
+{"file":"definition","input":"[foo]: /foo-url \"foo\"\n[bar]: /bar-url\n  \"bar\"\n[baz]: /baz-url\n\n[foo],\n[bar],\n[baz]","ok":"<p><a href=\"/foo-url\" title=\"foo\">foo</a>,\n<a href=\"/bar-url\" title=\"bar\">bar</a>,\n<a href=\"/baz-url\">baz</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support definitions after definitions","t":"assert","test":"definition"}
+{"file":"definition","input":"> [foo]: /url\n\n[foo]","ok":"<blockquote>\n</blockquote>\n<p><a href=\"/url\">foo</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support definitions in block quotes (1)","t":"assert","test":"definition"}
+{"file":"definition","input":"> [a]: <> 'b\n> c'","ok":"<blockquote>\n</blockquote>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support definitions in block quotes (2)","t":"assert","test":"definition"}
+{"file":"definition","input":"> [a]\n\n[a]: b (c\n)","ok":"<blockquote>\n<p><a href=\"b\" title=\"c\n\">a</a></p>\n</blockquote>\n","t":"html","test":"definition"}
+{"file":"definition","msg":"should support definitions in block quotes (3)","t":"assert","test":"definition"}
+{"file":"definition","input":"[\\[\\+\\]]: example.com\n\nLink: [\\[\\+\\]].","ok":"<p>Link: <a href=\"example.com\">[+]</a>.</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should match w/ character escapes","t":"assert","test":"definition"}
+{"file":"definition","input":"[x]: \\\"&#x20;\\(\\)\\\"\n\n[x]","ok":"<p><a href=\"%22%20()%22\">x</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support character escapes & references in unenclosed destinations","t":"assert","test":"definition"}
+{"file":"definition","input":"[x]: <\\>&#x20;\\+\\>>\n\n[x]","ok":"<p><a href=\"%3E%20+%3E\">x</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support character escapes & references in enclosed destinations","t":"assert","test":"definition"}
+{"file":"definition","input":"[x]: <\n\n[x]","ok":"<p>[x]: &lt;</p>\n<p>[x]</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should not support a line ending at start of enclosed destination","t":"assert","test":"definition"}
+{"file":"definition","input":"[x]: <x\n\n[x]","ok":"<p>[x]: &lt;x</p>\n<p>[x]</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should not support a line ending in enclosed destination","t":"assert","test":"definition"}
+{"file":"definition","input":"[x]: \u000ba\n\n[x]","ok":"<p>[x]: \u000ba</p>\n<p>[x]</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should not support ascii control characters at the start of destination","t":"assert","test":"definition"}
+{"file":"definition","input":"[x]: a\u000bb\n\n[x]","ok":"<p>[x]: a\u000bb</p>\n<p>[x]</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should not support ascii control characters in destination","t":"assert","test":"definition"}
+{"file":"definition","input":"[x]: <\u000ba>\n\n[x]","ok":"<p><a href=\"%0Ba\">x</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support ascii control characters at the start of enclosed destination","t":"assert","test":"definition"}
+{"file":"definition","input":"[x]: <a\u000bb>\n\n[x]","ok":"<p><a href=\"a%0Bb\">x</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support ascii control characters in enclosed destinations","t":"assert","test":"definition"}
+{"file":"definition","input":"[x]: a \"\\\"\"\n\n[x]","ok":"<p><a href=\"a\" title=\"&quot;\">x</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support character escapes at the start of a title","t":"assert","test":"definition"}
+{"file":"definition","input":"[x]: a \"'\"\n\n[x]","ok":"<p><a href=\"a\" title=\"'\">x</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support double quoted titles","t":"assert","test":"definition"}
+{"file":"definition","input":"[x]: a '\"'\n\n[x]","ok":"<p><a href=\"a\" title=\"&quot;\">x</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support single quoted titles","t":"assert","test":"definition"}
+{"file":"definition","input":"[x]: a (\"')\n\n[x]","ok":"<p><a href=\"a\" title=\"&quot;'\">x</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support paren enclosed titles","t":"assert","test":"definition"}
+{"file":"definition","input":"[x]: a(()\n\n[x]","ok":"<p>[x]: a(()</p>\n<p>[x]</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should not support more opening than closing parens in the destination","t":"assert","test":"definition"}
+{"file":"definition","input":"[x]: a(())\n\n[x]","ok":"<p><a href=\"a(())\">x</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support balanced opening and closing parens in the destination","t":"assert","test":"definition"}
+{"file":"definition","input":"[x]: a())\n\n[x]","ok":"<p>[x]: a())</p>\n<p>[x]</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should not support more closing than opening parens in the destination","t":"assert","test":"definition"}
+{"file":"definition","input":"[x]: a  \t\n\n[x]","ok":"<p><a href=\"a\">x</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support trailing whitespace after a destination","t":"assert","test":"definition"}
+{"file":"definition","input":"[x]: a \"X\" \t\n\n[x]","ok":"<p><a href=\"a\" title=\"X\">x</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support trailing whitespace after a title","t":"assert","test":"definition"}
+{"file":"definition","input":"[&amp;&copy;&]: example.com/&amp;&copy;& \"&amp;&copy;&\"\n\n[&amp;&copy;&]","ok":"<p><a href=\"example.com/&amp;%C2%A9&amp;\" title=\"&amp;\u00a9&amp;\">&amp;\u00a9&amp;</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support character references in definitions","t":"assert","test":"definition"}
+{"file":"definition","input":"[x]:\nexample.com\n\n[x]","ok":"<p><a href=\"example.com\">x</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support a line ending before a destination","t":"assert","test":"definition"}
+{"file":"definition","input":"[x]: \t\nexample.com\n\n[x]","ok":"<p><a href=\"example.com\">x</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support whitespace before a destination","t":"assert","test":"definition"}
+{"file":"definition","input":"[x]: <> \"\"\n[][x]","ok":"<p><a href=\"\"></a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should ignore an empty title","t":"assert","test":"definition"}
+{"file":"definition","input":"[a]\n\n[a]: <b<c>","o":{"esmParse":false,"expressionParse":false,"options":{"compile":{"allowAnyImgSrc":false,"allowDangerousHtml":true,"allowDangerousProtocol":true,"defaultLineEnding":"\n","gfmFootnoteBackLabel":null,"gfmFootnoteClobberPrefix":null,"gfmFootnoteLabel":null,"gfmFootnoteLabelAttributes":null,"gfmFootnoteLabelTagName":null,"gfmTagfilter":false,"gfmTaskListItemCheckable":false},"parse":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}}},"ok":"<p>[a]</p>\n<p>[a]: &lt;b<c></p>","t":"htmlOptions","test":"definition"}
+{"file":"definition","msg":"should not support a less than in an enclosed destination","t":"assert","test":"definition"}
+{"file":"definition","input":"[a]\n\n[a]: b(c","ok":"<p>[a]</p>\n<p>[a]: b(c</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should not support an extra left paren (`(`) in a raw destination","t":"assert","test":"definition"}
+{"file":"definition","input":"[a]\n\n[a]: b)c","ok":"<p>[a]</p>\n<p>[a]: b)c</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should not support an extra right paren (`)`) in a raw destination","t":"assert","test":"definition"}
+{"file":"definition","input":"[a]\n\n[a]: b)c","ok":"<p>[a]</p>\n<p>[a]: b)c</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should not support an extra right paren (`)`) in a raw destination","t":"assert","test":"definition"}
+{"file":"definition","input":"[a]\n\n[a]: a(1(2(3(4()))))b","ok":"<p><a href=\"a(1(2(3(4()))))b\">a</a></p>\n","t":"html","test":"definition"}
+{"file":"definition","msg":"should support 4 or more sets of parens in a raw destination (link resources don\u2019t)","t":"assert","test":"definition"}
+{"file":"definition","input":"[a]\n\n[a]: aaa)","ok":"<p>[a]</p>\n<p>[a]: aaa)</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should not support a final (unbalanced) right paren in a raw destination","t":"assert","test":"definition"}
+{"file":"definition","input":"[a]\n\n[a]: aaa) \"a\"","ok":"<p>[a]</p>\n<p>[a]: aaa) &quot;a&quot;</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should not support a final (unbalanced) right paren in a raw destination \u201cbefore\u201d a title","t":"assert","test":"definition"}
+{"file":"definition","input":" [a]: b \"c\"\n  [d]: e\n   [f]: g \"h\"\n    [i]: j\n\t[k]: l (m)\n\t n [k] o","ok":"<p>n <a href=\"l\" title=\"m\">k</a> o</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support subsequent indented definitions","t":"assert","test":"definition"}
+{"file":"definition","input":"[a\n  b]: c\n\n[a\n  b]","ok":"<p><a href=\"c\">a\nb</a></p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should support line prefixes in definition labels","t":"assert","test":"definition"}
+{"file":"definition","input":"[a]: )\n\n[a]","ok":"<p>[a]: )</p>\n<p>[a]</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should not support definitions w/ only a closing paren as a raw destination","t":"assert","test":"definition"}
+{"file":"definition","input":"[a]: )b\n\n[a]","ok":"<p>[a]: )b</p>\n<p>[a]</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should not support definitions w/ closing paren + more text as a raw destination","t":"assert","test":"definition"}
+{"file":"definition","input":"[a]: b)\n\n[a]","ok":"<p>[a]: b)</p>\n<p>[a]</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should not support definitions w/ text + a closing paren as a raw destination","t":"assert","test":"definition"}
+{"file":"definition","input":"[\na\n=\n]: b","ok":"<h1>[\na</h1>\n<p>]: b</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should prefer setext headings over definition labels","t":"assert","test":"definition"}
+{"file":"definition","input":"[a]: b '\nc\n=\n'","ok":"<h1>[a]: b '\nc</h1>\n<p>'</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should prefer setext headings over definition titles","t":"assert","test":"definition"}
+{"file":"definition","input":"[\n***\n]: b","ok":"<p>[</p>\n<hr />\n<p>]: b</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should prefer thematic breaks over definition labels","t":"assert","test":"definition"}
+{"file":"definition","input":"[a]: b '\n***\n'","ok":"<p>[a]: b '</p>\n<hr />\n<p>'</p>","t":"html","test":"definition"}
+{"file":"definition","msg":"should prefer thematic breaks over definition titles","t":"assert","test":"definition"}
+{"file":"definition","input":"[\n```\n]: b","ok":"<p>[</p>\n<pre><code>]: b\n</code></pre>\n","t":"html","test":"definition"}
+{"file":"definition","msg":"should prefer code (fenced) over definition labels","t":"assert","test":"definition"}
+{"file":"definition","input":"[a]: b '\n```\n'","ok":"<p>[a]: b '</p>\n<pre><code>'\n</code></pre>\n","t":"html","test":"definition"}
+{"file":"definition","msg":"should prefer code (fenced) over definition titles","t":"assert","test":"definition"}
+{"file":"definition","input":"[foo]: /url \"title\"","o":{"esmParse":false,"expressionParse":false,"options":{"compile":{"allowAnyImgSrc":false,"allowDangerousHtml":false,"allowDangerousProtocol":false,"defaultLineEnding":"\n","gfmFootnoteBackLabel":null,"gfmFootnoteClobberPrefix":null,"gfmFootnoteLabel":null,"gfmFootnoteLabelAttributes":null,"gfmFootnoteLabelTagName":null,"gfmTagfilter":false,"gfmTaskListItemCheckable":false},"parse":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":false,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}}},"ok":"<p>[foo]: /url &quot;title&quot;</p>","t":"htmlOptions","test":"definition"}
+{"file":"definition","msg":"should support turning off definitions","t":"assert","test":"definition"}
+{"file":"definition","input":"[a]: <b> 'c'","o":{"esmParse":false,"expressionParse":false,"options":{"constructs":{"attention":true,"autolink":true,"blockQuote":true,"characterEscape":true,"characterReference":true,"codeFenced":true,"codeIndented":true,"codeText":true,"definition":true,"frontmatter":false,"gfmAutolinkLiteral":false,"gfmFootnoteDefinition":false,"gfmLabelStartFootnote":false,"gfmStrikethrough":false,"gfmTable":false,"gfmTaskListItem":false,"hardBreakEscape":true,"hardBreakTrailing":true,"headingAtx":true,"headingSetext":true,"htmlFlow":true,"htmlText":true,"labelEnd":true,"labelStartImage":true,"labelStartLink":true,"listItem":true,"mathFlow":false,"mathText":false,"mdxEsm":false,"mdxExpressionFlow":false,"mdxExpressionText":false,"mdxJsxFlow":false,"mdxJsxText":false,"thematicBreak":true},"gfmStrikethroughSingleTilde":true,"mathTextSingleDollar":true}},"ok":"{\"type\":\"root\",\"children\":[{\"type\":\"definition\",\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":1,\"column\":13,\"offset\":12}},\"url\":\"b\",\"title\":\"c\",\"identifier\":\"a\",\"label\":\"a\"}],\"position\":{\"start\":{\"line\":1,\"column\":1,\"offset\":0},\"end\":{\"line\":1,\"column\":13,\"offset\":12}}}","t":"mdast","test":"definition"}
+{"file":"definition","msg":"should support definitions as `Definition`s in mdast","t":"assert","test":"definition"}
